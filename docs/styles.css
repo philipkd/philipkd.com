@@ -1,0 +1,58 @@
+body {
+	background-image: url('/bg_blogfabric.jpg');
+	background-repeat: repeat-x;
+	background-color: white;
+	margin: 0;
+	color: #222;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 18px;
+}
+
+img { border: 0px }
+
+/* main structure */
+
+#main {
+	width: 640px;
+	margin: 80px auto;
+	padding: 0;
+	text-align: left;
+	line-height: 150%;
+}
+
+#resume {
+	margin-top: 2em;
+}
+
+
+#resume ul {
+	padding-left: 20px;
+	list-style-type: square;
+}
+
+
+/* end main structure */
+
+.banner {
+	margin-bottom: 40px;
+	text-align: left;
+}
+
+
+@media only screen and (max-device-width: 480px) {
+
+	.banner img {
+		height: 75px;
+	}
+
+
+	body {
+		zoom: 125%;
+		font-size: 36px;
+	}
+
+	#resume ul {
+		padding-left: 33px;
+	}
+
+}

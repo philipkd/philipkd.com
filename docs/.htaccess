@@ -1,0 +1,13 @@
+Options All +Includes +MultiViews
+AddHandler server-parsed html rdf xml
+AddHandler cgi-script .pl
+
+ErrorDocument 404 /404.html
+
+RewriteEngine On
+
+# L flag means once rule executes, no more rules
+# R flag means redirect to external site
+
+RewriteRule ^life-altering	http://amzn.to/metalifechange [R,L]
+RewriteRule ^perfect-thread	http://amzn.to/metalifechange [R,L]

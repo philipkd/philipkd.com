@@ -1,0 +1,117 @@
+body {
+	background-color: white;
+	font-family: Helvetica;
+	margin: 8px 0 0;
+}
+
+#header {
+	border-top: solid 38px #4D8651;
+	border-bottom: solid 3px #4D8651;
+	margin: 8px 8px 0px;
+	/* border-left: solid 1px #999; */
+	/* border-right: solid 1px #999; */
+	padding: 0px 8px;
+	max-width: 910px;
+}
+
+#not-found {
+	margin: 8px 8px 0px;
+	padding: 0px 8px;
+}
+
+#footer {
+	background-color: #4D8651;
+	margin: 15px 8px 0px;
+	padding: 8px;
+}
+
+#canvas {
+	max-width: 940px;
+	margin: 0 auto;
+}
+
+h2, h3 {
+	font-weight: normal;
+}
+
+select {
+	font-size: 100%;
+}
+
+a {
+	color: black;
+	/* font-weight: bold; */
+	border-bottom: dotted 1px #333;
+	text-decoration: none;
+}
+
+.book {
+	width: 285px;
+	float: left;
+	margin-left: 8px;
+}
+
+.row {
+	clear: both;
+}
+
+#books {
+	margin-bottom: 10px;
+}
+
+#books .cover img {
+	width: 150px;
+	margin-bottom: 10px;
+}
+
+#books .title {
+	font-size: 140%;
+	line-height: 135%;
+	margin-bottom: 10px;
+}
+
+#books .author {
+	font-size: 120%;
+	margin-bottom: 10px;
+}
+
+#books .thumbs a {
+	border-bottom: none;
+}
+
+#books .mentions a:hover {
+	cursor: pointer;
+}
+
+#books .thumbs {
+	margin-top: 10px;
+	display: none;
+}
+
+#books .thumbs a:hover {
+	border-bottom: 2px solid black;
+	border-top: 2px solid black;
+}
+
+#books .book {
+	background-color: #EEE;
+	border: solid 1px black;
+	margin-top: 15px;
+	padding: 15px 8px;
+	/* border-bottom: solid 8px #999; */
+
+    background-color:#fff;
+    border-width:1px;
+    border-style:solid;
+    border-bottom-color:#aaa;
+    border-right-color:#aaa;
+    border-top-color:#ddd;
+    border-left-color:#ddd;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;	
+}
+
+#books .book:hover {
+	background-color: #FCFFED	;
+}
