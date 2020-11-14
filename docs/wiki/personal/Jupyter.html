@@ -1,0 +1,44 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>Jupyter</title>
+
+</head>
+
+<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">Jupyter</div>
+
+<h1>Environment variables</h1>
+
+<p><code>%env MY_VAR=MY_VALUE</code> (No quotes in MY_VALUE)<br />
+<code>%env</code></p>
+
+<h1>IPython</h1>
+
+<p><code>from IPython.display import display, Markdown, Audio, Image</code></p>
+
+<h1>Running on Server</h1>
+
+<p>remote: <code>jupyter lab --NotebookApp.token=""</code></p>
+
+<p>local: <code>ssh -N -f -L localhost:8888:localhost:8888 ubuntu@IP_ADDRESS</code></p>
+
+<h2>With Colab front-end</h2>
+
+<p><code>jupyter lab --NotebookApp.allow_origin='https://colab.research.google.com' --NotebookApp.token=""</code></p>
+
+<p><code>--NotebookApp.port_retries=0</code> and <code>--no-browser</code> might also be necessary</p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

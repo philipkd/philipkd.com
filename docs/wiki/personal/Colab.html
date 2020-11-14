@@ -1,0 +1,50 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>Colab</title>
+
+</head>
+
+<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">Colab</div>
+
+<h1>Mounting Google Drive</h1>
+
+<p>When you press the Drive icon, either of two things happen:</p>
+
+<ol>
+<li>A cell is created:</li>
+</ol>
+
+<p><code>from google.colab import drive
+drive.mount('/content/drive')</code></p>
+
+<ol>
+<li>A connection to Drive is made</li>
+</ol>
+
+<p>No. 2 is better because when you run the notebook, you don't have to Oauth each time. The method of pairing is tied to the notebook, and it's uncertain what determines which notebook does which behavior. However, the good type of pairing always works for new, blank notebooks, but not if you import a notebook.</p>
+
+<p>Workaround:</p>
+
+<ol>
+<li>create a blank notebook</li>
+<li>connect to Drive</li>
+<li>import a notebook in a new window</li>
+<li>select all cells</li>
+<li>paste all cells in the original notebook (tooltip will pop up saying to hit Cmd+V)</li>
+</ol>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

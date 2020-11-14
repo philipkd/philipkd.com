@@ -1,0 +1,53 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>DSP</title>
+
+</head>
+
+<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">DSP</div>
+
+<p>The "pure A", or first A above Middle-C, is 440 Hz.</p>
+
+<p>Standard sample rate: 44.1 kHz</p>
+
+<p>Humans can hear frequencies between 20 Hz and 20 kHz. (the "<a href="https://www.izotope.com/en/learn/digital-audio-basics-sample-rate-and-bit-depth.html">20-to-20</a>" rule)</p>
+
+<p>Sound is a graph of pressure over time. Multiple frequencies A440 or D294 sum and their peaks make double the pressure when aligned. </p>
+
+<h1>Mel Scale</h1>
+
+<p>Converts Hertz into the mel(ody) scale, which is a measure of pitch. Kind of like a log. 1000 mels = 1000 Hz. A440 = 549.64 mels.</p>
+
+<p>From this:<br />
+<img src="spectrogram.png" alt="" /></p>
+
+<p>To this:
+<img src="mel-spectrogram.png" alt="" /></p>
+
+<p><a href="https://towardsdatascience.com/getting-to-know-the-mel-spectrogram-31bca3e2d9d0">source</a></p>
+
+<h1>Fourier Transform</h1>
+
+<p>Fourier Transform coils the wave around a circle, and tweaks the winding frequency, then gets the center of mass of the coil, and graphs its distance from the origin. Wherever the graph peaks, that's where the underlying frequencies are.</p>
+
+<p><img src="fourier-one-wave.png" alt="" /></p>
+
+<p><img src="fourier-two-waves.png" alt="" /></p>
+
+<p><a href="https://www.youtube.com/watch?v=spUNpyF58BY">source</a></p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

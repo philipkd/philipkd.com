@@ -1,0 +1,103 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>Linux</title>
+
+</head>
+
+<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">Linux</div>
+
+<h1><a href="https://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/">bash prompt</a></h1>
+
+<p><code>PS1="\[$(tput setaf 7)\]\u: \w &gt; \[$(tput sgr0)\]"</code> (white, user, folder, reset color)</p>
+
+<h1>chmod</h1>
+
+<p>user-group-others<br />
+read = 4, write = 2, execute = 1<br />
+ex: <code>chmod 600 keys</code></p>
+
+<h1>curl</h1>
+
+<p><code>curl https://some.url --output file</code></p>
+
+<h1>disk usage</h1>
+
+<p><code>du -sh .</code> (-s is summary of disk usage, -h is human readable)<br />
+<code>du -sh *</code> summarizes each item in that folder<br />
+<code>du -sh * | sort -rh | head -5</code> shows top 5 largest paths<br />
+(-r reverses, and -h does human sort, taking into account suffixes)</p>
+
+<p><code>df -h</code> shows free disk space on various devices</p>
+
+<h1>environment variables</h1>
+
+<p><code>export NAME=VALUE</code><br />
+<code>echo $NAME</code>  </p>
+
+<h1>find folder</h1>
+
+<p><code>find . -type d -name 'foldernam'</code>  </p>
+
+<h1>mounting disk</h1>
+
+<p><code>lsblk</code> lists block devices<br />
+<code>sudo file -s /dev/xvdf</code> shows file system for attached volumes<br />
+<code>sudo mount /dev/xvdf /data</code> mounts block  </p>
+
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html">source</a></p>
+
+<h1>screen</h1>
+
+<p>Ctrl+a, d to detatch<br />
+<code>screen -ls</code> or Ctrl+a, "<br />
+<code>screen -r</code> to reattach</p>
+
+<h1>shutting down</h1>
+
+<p><code>sudo shutdown now</code></p>
+
+<h1>SSH tunneling</h1>
+
+<p><code>ssh -L 5901:127.0.0.1:5901 -C -N -l ubuntu 35.153.231.137</code><br />
+-L specifies the port bindings (local/remote)<br />
+-C enables compression<br />
+-N says don't execute a remote command<br />
+-l specifies remote login name  </p>
+
+<h1>Ubuntu updates</h1>
+
+<p><code>sudo apt-get update</code> updates package lists<br />
+<code>sudo apt-get upgrade</code> upgrades every installed package</p>
+
+<h1>unzip</h1>
+
+<p><code>unzip -l zipfile</code> shows contents<br />
+<code>unzip zipfile -d folder</code> unzips to folder<br />
+<code>unzip -n zipfile</code> doesn't overwrite<br />
+<code>unzip -q zipfile</code> hides output</p>
+
+<h1>VNC Server</h1>
+
+<p><code>vncserver -kill :1</code><br />
+<a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-18-04">setup guide</a></p>
+
+<h1>wget</h1>
+
+<p><code>wget url</code><br />
+<code>wget -O filename https://some.url</code>  </p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

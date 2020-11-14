@@ -1,4 +1,4 @@
-Options All +Includes +MultiViews
+Options All +Includes -MultiViews
 AddHandler server-parsed html rdf xml
 AddHandler cgi-script .pl
 
@@ -6,8 +6,17 @@ ErrorDocument 404 /404.html
 
 RewriteEngine On
 
+RewriteRule ^db/([^.]*)$ /db.php?tag=$1 [L]
+RewriteRule ^wiki/(.*)\.(png|jpg|gif|jpeg)$ /local-media/$1.$2 [L]
+RewriteRule ^wiki/(.*)$ /wiki.php?note=$1 [L]
+
 # L flag means once rule executes, no more rules
 # R flag means redirect to external site
+
+RewriteRule ^preview/$ preview.php [L]
+# RewriteRule ^preview/ ../preview/grid-squares.png [L]
+
+# Apache redirects are deprecated in favor of individual pages redirecting for GitHub pages
 
 RewriteRule ^life-altering	http://amzn.to/metalifechange [R,L]
 RewriteRule ^perfect-thread	http://amzn.to/metalifechange [R,L]

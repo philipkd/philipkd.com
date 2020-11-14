@@ -1,0 +1,41 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>PyTorch</title>
+
+</head>
+
+<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">PyTorch</div>
+
+<p><code>model.eval()</code> and <code>model.train()</code> put the model in different modes, where you may want certain features, like drop-out to be on or off</p>
+
+<p><code>model.no_grad()</code> similarly is a toggle, where there is no backpropagation. Set for performance reasons when doing a prediction, since no need to update gradient</p>
+
+<p><code>torch.tensor([1., 2.]).cuda()</code> sends the tensor from CPU to GPU</p>
+
+<h1>Saving Models</h1>
+
+<p><code>torch.save()</code> and <code>torch.load()</code> are standard serialize, deserialize functions that work on any object, from basic dictionaries to model objects</p>
+
+<p><a href="https://stackoverflow.com/questions/42703500/best-way-to-save-a-trained-model-in-pytorch">Use-cases</a>:</p>
+
+<ol>
+<li><p>inference: <code>torch.save(model.state_dict())</code>, <code>model.load_state_dict(torch.load(filepath))</code> <em>Note: <code>model.eval()</code> must be run right after so that dropouts are properly configured.</em></p></li>
+<li><p>resuming training: you would also need the <code>optimizer.state_dict()</code> and epoch num for a full restore.</p></li>
+<li><p>sharing: <code>torch.save(model)</code> <em>Not recommended since as classes and directory structure changes, the references in the model may no longer work</em></p></li>
+</ol>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

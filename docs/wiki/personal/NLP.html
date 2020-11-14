@@ -1,0 +1,73 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>NLP</title>
+
+</head>
+
+<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">NLP</div>
+
+<h1>Concepts</h1>
+
+<p>an <strong>attention-mechanism</strong> highlights keywords relevant to the sequence in the imaginary language, providing context.</p>
+
+<p><strong>autoencoders</strong> encode to a "bottleneck" layer, then decode and see how much loss there was with the original. The idea being that the "bottleneck" layer distills the essence of the original input.</p>
+
+<p><strong>self-supervised learning</strong> uses a transformation on a sample to predict other transformation (typically identity) of sample. In the case of text, using previous words (subset) to predict next likely words (subset). In the case of an image, jigsawing it (scramble) then figuring out how to put it back together (identity), or grayscaling it (decolorizing), and figuring out how to recolorize it (identity).</p>
+
+<p><strong>Seq2Seq</strong> uses an <strong>encoder</strong> and <strong>decoder</strong>. The encoder's mother tongue is let's say, English, and the decoder's tongue is let's say, German. The encoder encodes the English sentence into an imaginary language, which the decoder can then read and turn into German.</p>
+
+<p><strong>temperature</strong> is similar to temperature in <a href="simulated_annealing">simulated annealing</a> with higher temperatures leading to more diversity, but potentially more mistakes.</p>
+
+<h1>ULMFiT</h1>
+
+<p>"Universal Language Model Fine-Tuning" has <a href="https://medium.com/mlreview/understanding-building-blocks-of-ulmfit-818d3775325b">three building blocks</a>:</p>
+
+<ol>
+<li>LM pre-training on a general, big corpus, such as wikitext</li>
+<li>LM fine-tuning on a target corpus </li>
+<li>Classifier fine-tuning which unfreezes the layers one at a time, starting with the last.</li>
+</ol>
+
+<p>The LM used is AWD-LSTM (ASGD Weight-Dropped LSTM).</p>
+
+<h1>The Innovation in Transformers</h1>
+
+<p>Sequence:</p>
+
+<ol>
+<li>LTSM / GRUs (RNNs)</li>
+<li>Transformers such as BERT (Remove RNN)</li>
+</ol>
+
+<p>LTSM and GRUs were both attention-based Seq2Seq models, but they used RNNs. Transformers removed the RNN component, and found that attention was sufficient. This allowed for parallelization, rather than having to train words in sequence, thus drastically reducing training time. Training on large datasets was the key innovation of GPT.</p>
+
+<h1>Run-up to GPT-2</h1>
+
+<ul>
+<li>Jan 2018 - ULMFit</li>
+<li>Feb 2018 - ELMo</li>
+<li>Jun 2018 - GLoMo</li>
+<li>Jun 2018 - GPT</li>
+<li>Oct 2018 - BERT</li>
+<li>Jan 2019 - Transformer-XL</li>
+<li>Feb 2019 - GPT-2</li>
+<li>May 2020 - GPT-3</li>
+</ul>
+
+<p><a href="https://medium.com/mlreview/understanding-building-blocks-of-ulmfit-818d3775325b">source</a></p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

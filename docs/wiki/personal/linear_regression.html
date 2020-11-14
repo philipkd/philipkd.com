@@ -1,0 +1,100 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>linear regression</title>
+
+</head>
+
+<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">linear regression</div>
+
+<p><strong>Wx+b = Y.</strong></p>
+
+<p>W is adjusted in steps based on a step function using Gradient Descent.</p>
+
+<p>Has 91% accuracy on MNIST</p>
+
+<h1>Canonical Example: Gradient Descent</h1>
+
+<p>This cost field is unknown and we can't figure out the global minimum, so we have to walk in steps. But which direction do we walk? We need partial derivatives.</p>
+
+<p><img src="gradient-descent.png" alt="" /></p>
+
+<p><em>Adam Optimizer is an algorithim, similar to Gradient Descent. These are called optimizers because they provide a means of figuring out what to do to the weights at each step.</em></p>
+
+<h2>Progression</h2>
+
+<ol>
+<li><p>Training:</p>
+
+<p>a. Sample: one example that could be inputted into <strong>Wx+b = Y</strong><br />
+b. Batch (also called a step): a set of samples that leads to one update to <strong>W</strong>  (batch size of 32 is a <a href="https://stats.stackexchange.com/questions/164876/tradeoff-batch-size-vs-number-of-iterations-to-train-a-neural-network">good start</a>, but should also try 64, 128, and 256)
+c. Epoch: when every sample in the training dataset has been run through once (usually run for 10, 100, 500, 1000, and <a href="https://machinelearningmastery.com/difference-between-a-batch-and-an-epoch/">larger</a>)</p></li>
+<li><p>Validation:</p>
+
+<p>a. Find better hyperparams (could be after <em>n</em> epochs) using this dataset<br />
+b. Create new model from scratch with new hyperparams and re-run training phase  </p></li>
+<li><p>Test:</p>
+
+<p>a Measure performance of best model against this set<br />
+b. No automated model creation after this  </p></li>
+</ol>
+
+<h2>"Steps"</h2>
+
+<ol>
+<li>Grab a batch of data</li>
+<li>Calculate the partial derivative of each data point given the <strong>W</strong></li>
+<li>Move the weights the step increment in the direction that reduces cost</li>
+</ol>
+
+<h2>"Cost"</h2>
+
+<p>Using MNIST as example:</p>
+
+<ul>
+<li>sample is (pixels,ground-truth label) for each image</li>
+<li>y-estimate = Mx + b, where x is pixels</li>
+<li>y-actual = label</li>
+<li>cost = y-estimate - y-actual</li>
+</ul>
+
+<h2>Mini-Batch</h2>
+
+<ul>
+<li>Batch Gradient Descent. Batch Size = Size of Training Set</li>
+<li>Stochastic Gradient Descent. Batch Size = 1</li>
+<li>Mini-Batch Gradient Descent. 1 &lt; Batch Size &lt; Size of Training Set</li>
+</ul>
+
+<h1>Backpropagation</h1>
+
+<p>Backpropagation is just a way to calculate the first derivative of a cost function.</p>
+
+<blockquote>
+  <p>The goal of backpropagation is to compute the partial derivatives ∂C/∂w and ∂C/∂b of the cost function C with respect to any weight w or bias b in the network"</p>
+</blockquote>
+
+<p><a href="https://towardsdatascience.com/part-2-gradient-descent-and-backpropagation-bf90932c066a">source</a></p>
+
+<p>It's called backpropogatation, because in a multi-layer feedforward network, the weights roll back from the last layer to the first layer.</p>
+
+<blockquote>
+  <p>Sometimes a multilayer feedforward neural network is referred to incorrectly as a back-propagation network. The term back-propagation does not refer to the structure or architecture of a network. Back-propagation is a method for calculating the first derivative, or gradient, of the error function required by some optimization methods.</p>
+</blockquote>
+
+<p><a href="https://docs.roguewave.com/en/imsl/c/2016.1/html/cnlstat/index.html#page/CNL%20Stat/csch13.16.42.html">source</a></p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

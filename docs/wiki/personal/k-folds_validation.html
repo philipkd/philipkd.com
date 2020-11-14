@@ -1,0 +1,37 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>k-folds validation</title>
+
+</head>
+
+<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">k-folds validation</div>
+
+<p>Process:</p>
+
+<ol>
+<li>split samples randomly into <em>k</em>-buckets</li>
+<li>select one fold as a hold out (validation set), use the rest as a training set</li>
+<li>run for <em>n</em> epochs and save your model</li>
+<li>re-run with the other folds from scratch and save those models (key point: if you don't start from scratch, then you'll completely fit the training set)</li>
+<li>compare those models</li>
+</ol>
+
+<p><strong>stratified k-folds</strong> is the same thing, but in such a way that it preserves a representative sample from a certain class</p>
+
+<p><strong>out-of-fold predictions</strong> are predictions collected from each of the folds' validation phases. You should have one prediction for each sample, but from when they were in temporarily held out</p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

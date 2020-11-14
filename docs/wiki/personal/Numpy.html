@@ -1,0 +1,38 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>Numpy</title>
+
+</head>
+
+<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">Numpy</div>
+
+<p>Dimensions for n-dimensional arrays are not the same as dimensions in real space. In Numpy:</p>
+
+<ul>
+<li>A shape with n-comma-separated axes has a dimension of n</li>
+<li>the last axis is lowest-level feature</li>
+</ul>
+
+<p><em>example 1:</em></p>
+
+<p>M has a shape(4, 3) to represent a list of four "3D points". It has 2 dimensions, and can be described as "4 rows, 3 columns" or "4 by 3." A point in M-space would be something like (1,2), representing the 2nd "point", and its "coordinate on the z-axis."</p>
+
+<p><em>example 2:</em></p>
+
+<p>M has a shape(8,1024,512) to represent 8 images, with 1024 pixels, with 512 color probabilities (from 9 bit space). It has 3 dimensions, and can be described as "8 by 1024 by 512". A point in M-space like (1,2,3) would represent the "2nd image, the 3rd pixel, and the probability estimate for each of the 512 colors."</p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

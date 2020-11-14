@@ -1,0 +1,99 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>machine learning</title>
+
+</head>
+
+<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">machine learning</div>
+
+<h1>Definitions</h1>
+
+<p><strong>cross-entropy</strong> is an always positive, loss-function or "cost"-function to be minimized.</p>
+
+<p><strong>cross-validation (CV)</strong> is a fancy term for splitting samples into validation and training sets.</p>
+
+<p><strong><a href="F1">F1</a></strong></p>
+
+<p><strong>logits</strong> are (-inf,inf) "raw" prediction values, which are usually the last layer, which are then thrown into softmax</p>
+
+<p>A non-informative <strong>log loss</strong> <a href="https://medium.com/@fzammito/whats-considered-a-good-log-loss-in-machine-learning-a529d400632d">is around 0.69</a></p>
+
+<p><strong>mAP (or AP)</strong>: take the precision @ 1 guess, precision @ 2 guesses, ... and average them, then average over all classification types</p>
+
+<p><strong><a href="ReLU">ReLU</a></strong></p>
+
+<p><strong>quantizing</strong> reduces the number of bits used to represent a number, usually from FP32 to INT8</p>
+
+<p><strong>softmax</strong> normalizes inputs that are all over the place, and puts them from [0,1], so that they sum to 1. Gives you the best guess of an answer. It weights answers by exponenting them.</p>
+
+<p><strong>top-1</strong> looks at the accuracy of your highest probability label</p>
+
+<h1>Network Classes</h1>
+
+<p><strong>feedforward neural networks</strong>, or multilayer perceptrons(MLPs), approximate some function in the real-world <em>f</em>. For example, for a real-world classifier, y = <em>f</em>(x) maps an input x to a category y.</p>
+
+<p>Typically, this turns into y = Mx + b, where y is a column of "results" where each row is a classification. y is then softmaxed into a prediction.</p>
+
+<p>In <strong>a recurrent neural network</strong>, y is fed back into itself.</p>
+
+<p><strong>unsupervised learning</strong> takes, for example, MNIST but without labels, and then figures out the obvious classifications. (<a href="https://www.youtube.com/watch?v=rHeaoaiBM6Y">comparison with supervised learning</a>; See also: <strong>self-supervised learning</strong> in <a href="NLP">NLP</a>)</p>
+
+<p><a href="NLP">NLP</a></p>
+
+<h2>Computer Vision Sequence</h2>
+
+<ol>
+<li><a href="linear_regression">linear regression</a></li>
+<li><a href="convolutional_neural_networks">convolutional neural networks</a></li>
+<li><a href="ResNet">ResNet</a></li>
+<li><a href="ResNeSt">ResNeSt</a>, <a href="ResNeXt">ResNeXt</a></li>
+</ol>
+
+<h1>Techniques</h1>
+
+<p><strong>dropout</strong> temporarily inactivates neurons during training so that the remaining sparse network is more responsible for nailing the proper output rather than embedding the noise, thus preventing overfitting.</p>
+
+<p><strong><a href="k-folds_validation">k-folds validation</a></strong></p>
+
+<p><strong>k-means clustering</strong> puts data points into <em>k</em> clusters, where sum of squared distances to centroid of each cluster is minimal. You find centroid by a type of shuffling that includes finding nearest point to centroid.</p>
+
+<p><strong><a href="pseudo-labeling">pseudo-labeling</a></strong></p>
+
+<p><strong><a href="regularization">regularization</a></strong></p>
+
+<p><strong><a href="simulated_annealing">simulated annealing</a></strong> is based on annealing in metallurgy. You start at an "annealing temperature" and slowly reduce it so the molecules settle into lattice networks that are tighter than if cooled quickly. Likewise, in something like the traveling salesman problem, we take a random route, and modify it randomly. If the modification reduces the cost, we take it. If not we decide with probability <em>p</em> whether to take it. We then gradually reduce <em>p</em>. Simulated annealing starts with favoring <em>exploration</em> and ends with favoring <em>exploitation</em> in its search for an optimal solution. SA is a type of <strong>scheduler</strong> which determines how the learning rate should change over time. Other schedulers include consine annealing which just keeps moving the LR up and down.</p>
+
+<h1>Tools</h1>
+
+<p><a href="GPUs">GPUs</a><br />
+<a href="Numpy">Numpy</a><br />
+<a href="Pandas">Pandas</a><br />
+<a href="Python">Python</a><br />
+<a href="PyTorch">PyTorch</a><br />
+<a href="TensorFlow">TensorFlow</a>  </p>
+
+<h2>Notebooks</h2>
+
+<p><a href="Colab">Colab</a><br />
+<a href="Jupyter">Jupyter</a><br />
+<a href="Kaggle">Kaggle</a>  </p>
+
+<h1>Note on Training</h1>
+
+<p><em>More important is the validation and training error. As long as it keeps dropping training should continue.</em></p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

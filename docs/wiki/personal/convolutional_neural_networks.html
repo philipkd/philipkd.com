@@ -1,0 +1,68 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>convolutional neural networks</title>
+
+</head>
+
+<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">convolutional neural networks</div>
+
+<h1>Note</h1>
+
+<p>Has 99% accuracy on MNIST</p>
+
+<h1>High-Level Concept</h1>
+
+<h2>Convolution</h2>
+
+<p><img src="multiplied-function-integral.png" alt="" /></p>
+
+<p>conv(<em>f</em>,<em>g</em>) = area(<em>t</em>) where <em>t</em> is the shift of <em>g</em></p>
+
+<h1>Layers</h1>
+
+<h2>kernel/filter, K, feature detector</h2>
+
+<p><img src="convolved-feature.gif" alt="" /></p>
+
+<p>"The first ConvLayer is responsible for capturing the Low-Level features such as edges, color, gradient orientation" etc."<a href="https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53">*</a></p>
+
+<p><strong>stride</strong> is how far across and down the filter moves. The default is (1,1)</p>
+
+<p><strong>padding</strong> determines whether to artificially expand the image, usually by mirroring the edge pixels, so that the filter starts centered on (0,0) rather than (w/2,w/2). <em>valid padding</em> which drops pixels where filter doesn't fit.</p>
+
+<h2>Pooling</h2>
+
+<p><img src="pooling.gif" alt="" /></p>
+
+<p><strong>max pooling</strong> takes the maximum value of the 9 squares
+<strong>average pooling</strong> takes the average value of the 9 squares</p>
+
+<h2>Fully Connected Layer</h2>
+
+<p>Takes the weights of all the previous layers and figures out what to multiply them by to spit out a classification. Two FCs are used for <a href="https://stackoverflow.com/questions/47007658/idea-behind-how-many-fully-connected-layers-should-be-use-in-a-general-cnn-netwo">optimization reasons</a>.</p>
+
+<p><img src="cnn-overview.jpg" alt="" /></p>
+
+<p><em>Note: convolution is more expensive than matrix math, which is part of why FCs are designed this way</em></p>
+
+<h1>CNN-specific Techniques</h1>
+
+<p>When you <strong>mixup</strong>, you add more samples that are mixes of two samples, like a cat overlaid with a dog at 50% alpha, and the label being (0.5,0.5). This process helps prevent overfitting by essentially making the model more of a probabilistic thinker.</p>
+
+<p><strong>TTA</strong> (test-time augmentation) augments the test dataset with flips, etc. It then predicts on those augs and ensembles them</p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

@@ -1,0 +1,3 @@
+[submodule "docs/mediumesque"]
+	path = docs/mediumesque
+	url = https://github.com/philipkd/mediumesque.git
