@@ -1,6 +1,6 @@
 <?php
 
-$cmd = "php docs/scratch.php > docs/scratch.html";
+$cmd = "php docs/db.php > docs/db/index.html";
 print "$cmd\n";
 `$cmd`;
 
