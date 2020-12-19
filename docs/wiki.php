@@ -48,6 +48,8 @@ $title = preg_replace('/(.*){0,1}\/(.*)/','\2',$note);
 if ($title == 'index')
 	$title = 'Home';
 
+$wikititle = ucfirst(rtrim($parent_dir,"/")) . " Wiki";
+
 ?>
 
 
@@ -64,7 +66,7 @@ if ($title == 'index')
 
 </head>
 
-<div class="site-title"><a href="./">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+<div class="site-title"><a href="./"><?= $wikititle ?></a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
 
 <div class="entry">
 

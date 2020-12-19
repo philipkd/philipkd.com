@@ -1,0 +1,16 @@
+- wiki should have dark theme
+
+- underscores for page names should work, so "row_id" should be a page
+
+- would be nice to have | aliases for pages linked to
+
+- maybe re-investigate the pre-built wiki softwares
+
+---
+
+Issues with DokuWiki:
+
+- I'd have to completely re-do the template
+- I'd have to install a plugin to get site export
+- It's not MarkDown
+- I went pretty far after starting up the Machine Learning wiki and then abandoned it, so there must be some high-level issue I had
