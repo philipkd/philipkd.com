@@ -13,7 +13,7 @@
 
 </head>
 
-<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
 
 <div class="entry">
 
@@ -29,7 +29,7 @@
 
 <p>But both combine with the preset arguments.</p>
 
-<h1>arrays</h1>
+<h1>array notation</h1>
 
 <p><code>a[start:stop]</code>  # items start through stop-1<br />
 <code>a[start:]</code>      # items start through the rest of the array<br />
@@ -40,11 +40,30 @@
 <code>a[-2:]</code>   # last two items in the array<br />
 <code>a[:-2]</code>   # everything except the last two items  </p>
 
+<h2><a href="https://stackoverflow.com/questions/28070526/why-doesnt-the-python-2d-array-index-order-matter-when-used-with-colon">2D array selection</a></h2>
+
+<p><code>a[:][2]</code> is the same as <code>a[2]</code> because python evaluates the braces in sequence, i.e., <code>a[:]</code> is equivalent to <code>a</code>. For 2D array selection, use numpy.</p>
+
+<h1>arrays vs. lists</h1>
+
+<p>Arrays are lists with extra features, such as the ability to run mathematical operations over the whole list. Because the extra features depend on the implementation, the key difference is that arrays have to be imported, usually by Numpy</p>
+
+<h1><a href="https://stackoverflow.com/questions/123198/how-do-i-copy-a-file-in-python">copy a file</a></h1>
+
+<p><code>from shutil import copy
+copy(src, dst)</code></p>
+
 <h1>environment variables</h1>
 
 <p><code>os.environ["CLOUDSDK_CONFIG"] = 'xyz'</code></p>
 
+<h1>f-strings</h1>
+
+<p><code>f'{a:.2f}'</code> displays <code>a</code> as a float with 2 decimal precisions</p>
+
 <h1>memory issues</h1>
+
+<p><code>psutil.virtual_memory().percent</code> is used by <a href="https://www.kaggle.com/leadbest/sakt-riiid-lgbm-bagging2/">@leadbest</a></p>
 
 <h2><a href="https://stackoverflow.com/a/23883524/210173">mem_top</a></h2>
 
@@ -54,21 +73,21 @@
 
 <p>Show growth in object types on the heap:</p>
 
-<p><code>objgraph.show_growth()</code><br />
-<code>do_something()</code><br />
-<code>objgraph.show_growth()</code>  </p>
+<p><code>objgraph.show_growth()
+do_something()
+objgraph.show_growth()</code>  </p>
 
 <h2>GPU Stats</h2>
 
 <p>Snippet that has comparable GPU stats to Kaggle:</p>
 
-<p><code>import subprocess as sp</code>
-<code>_output_to_list = lambda x: x.decode('ascii').split('\n')[:-1]</code><br />
-<code>ACCEPTABLE_AVAILABLE_MEMORY = 1024</code><br />
-<code>COMMAND = "nvidia-smi --query-gpu=memory.used --format=csv"</code><br />
-<code>memory_used_info = _output_to_list(sp.check_output(COMMAND.split()))[1:]</code><br />
-<code>memory_used_values = [int(x.split()[0]) for i, x in enumerate(memory_used_info)]</code><br />
-<code>print("GPU MEM: %0.1f / 15.9 GB" % (memory_used_values[0] / 1000))</code>  </p>
+<p><code>import subprocess as sp
+_output_to_list = lambda x: x.decode('ascii').split('\n')[:-1]
+ACCEPTABLE_AVAILABLE_MEMORY = 1024
+COMMAND = "nvidia-smi --query-gpu=memory.used --format=csv"
+memory_used_info = _output_to_list(sp.check_output(COMMAND.split()))[1:]
+memory_used_values = [int(x.split()[0]) for i, x in enumerate(memory_used_info)]
+print("GPU MEM: %0.1f / 15.9 GB" % (memory_used_values[0] / 1000))</code></p>
 
 <p><a href="https://stackoverflow.com/questions/59567226/how-to-programmatically-determine-available-gpu-memory-with-tensorflow">source (tweaked)</a></p>
 
@@ -87,6 +106,20 @@
 <h2>multiprocessing pool</h2>
 
 <p><a href="https://stackoverflow.com/a/39101287/210173">Spawning a separate process</a> will sandbox the memory</p>
+
+<h1>object type</h1>
+
+<p><code>type(obj)</code></p>
+
+<h1>package management</h1>
+
+<p>See: <a href="Conda">Conda</a></p>
+
+<h1>random numbers</h1>
+
+<p><code>from random import seed, random, randint
+seed(42)
+randint(0,10) # inclusive</code> </p>
 
 <br/>
 <a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

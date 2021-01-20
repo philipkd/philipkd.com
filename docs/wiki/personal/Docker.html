@@ -1,0 +1,64 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>Docker</title>
+
+</head>
+
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">Docker</div>
+
+<p>Dockers create VMs inside of VMs. For example, immediately after creating an EC2 of a vanilla Ubuntu image, typically you install packages (i.e. Firefox, text editor, pip, CUDA drivers). That sequence can be kept in a script called a Dockerfile and then sandboxed in its own container.</p>
+
+<p>A docker has two components: the specification of the VM (i.e. packages to install) and the run parameters.</p>
+
+<p>Docker services have two components: <code>systemctl</code> (<code>service docker stop/start</code>) and restartable containers.</p>
+
+<h1><a href="https://stackoverflow.com/a/53516263/210173">config without re-run</a></h1>
+
+<ol>
+<li><code>service docker stop</code></li>
+<li>edit <code>config.v2.json</code> (ex: change volume mount)</li>
+<li>edit <code>hostconfig.json</code> (ex: change <a href="https://github.com/pytorch/pytorch/issues/5040#issuecomment-379291662">shared memory size</a>)</li>
+<li><code>service docker start</code></li>
+</ol>
+
+<h1>file system</h1>
+
+<p><code>/var/lib/docker/containers</code> has config files
+<code>/var/lib/docker/volumes</code> has volumes</p>
+
+<h1>flags</h1>
+
+<p><code>-d</code> means detached</p>
+
+<h1>logging in</h1>
+
+<p><code>docker exec -it container_name bash</code> logs you in (-it means interactive)</p>
+
+<h1>running with a <a href="https://docs.docker.com/storage/volumes/">mount</a></h1>
+
+<p><code>docker run -d \
+  --name devtest \
+  --mount source=volume_name,target=/home/jupyter/ \
+  gcr.io/kaggle-gpu-images/python</code></p>
+
+<h1>utilities</h1>
+
+<p><a href="https://github.com/csmith/docker-rerun">docker-rerun</a><br />
+<a href="https://github.com/lavie/runlike">runlike</a><br />
+<a href="https://github.com/docker/cli/issues/1278">shared memory script</a> (8GB is a <a href="https://github.com/pytorch/pytorch/issues/2244#issuecomment-318864552">good number</a>)</p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

@@ -13,7 +13,7 @@
 
 </head>
 
-<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
 
 <div class="entry">
 
@@ -27,11 +27,17 @@
 
 <h1>Canonical Example: Gradient Descent</h1>
 
-<p>This cost field is unknown and we can't figure out the global minimum, so we have to walk in steps. But which direction do we walk? We need partial derivatives.</p>
+<p>The goal of supervised learning is to find the weights that minimize a cost function. However, the cost graph is unknown and we can't figure out the global minimum, so we have to walk in steps. Calculate the derivative at any point. A 1 means a 45 degree angle, a 10 means a very steep one, and then you multiply by the -1 and the learning rate, which should be a tiny step, like 0.0001, depending on how bumpy the cost graph is.</p>
+
+<p><em>A <strong>vanishing</strong> or <strong>sparse gradient</strong> happens when the slope is too shallow, like 0.0001, such that moving small steps in that direction, doesn't help.</em></p>
 
 <p><img src="gradient-descent.png" alt="" /></p>
 
-<p><em>Adam Optimizer is an algorithim, similar to Gradient Descent. These are called optimizers because they provide a means of figuring out what to do to the weights at each step.</em></p>
+<h2>Adam Optimizer</h2>
+
+<p>Optimizers do special things to gradients when calculating weight updates. Adam optimizer calculates the slope using a exponentially decaying average of the slopes at each training step. It uses β1 and β2 to represent the decay rates for the first (mean) and second (std. dev) moments of the cost function. Higher betas mean "include more of" the history when calculating the moments. Lower beta means tinier steps.</p>
+
+<p>Given that the weight updates = -1 * gradient * learning&#95;rate, then smaller betas should lead to slower training.</p>
 
 <h2>Progression</h2>
 
@@ -39,24 +45,18 @@
 <li><p>Training:</p>
 
 <p>a. Sample: one example that could be inputted into <strong>Wx+b = Y</strong><br />
-b. Batch (also called a step): a set of samples that leads to one update to <strong>W</strong>  (batch size of 32 is a <a href="https://stats.stackexchange.com/questions/164876/tradeoff-batch-size-vs-number-of-iterations-to-train-a-neural-network">good start</a>, but should also try 64, 128, and 256)
-c. Epoch: when every sample in the training dataset has been run through once (usually run for 10, 100, 500, 1000, and <a href="https://machinelearningmastery.com/difference-between-a-batch-and-an-epoch/">larger</a>)</p></li>
+b. Batch (also called a step): a set of samples that leads to one update to <strong>W</strong>  (batch size of 32 is a <a href="https://stats.stackexchange.com/questions/164876/tradeoff-batch-size-vs-number-of-iterations-to-train-a-neural-network">good start</a>, but should also try 64, 128, and 256)<br />
+c. Step: Calculate the partial derivative of each data point given the <strong>W</strong>, then move the weights the step increment in the direction that reduces cost<br />
+d. Epoch: when every sample in the training dataset has been run through once (usually run for 10, 100, 500, 1000, and <a href="https://machinelearningmastery.com/difference-between-a-batch-and-an-epoch/">larger</a>)</p></li>
 <li><p>Validation:</p>
 
-<p>a. Find better hyperparams (could be after <em>n</em> epochs) using this dataset<br />
-b. Create new model from scratch with new hyperparams and re-run training phase  </p></li>
+<p>a. Know how many epochs to stop training<br />
+b. Find better hyperparams<br />
+c. You don't use the validation loss to change the weights</p></li>
 <li><p>Test:</p>
 
-<p>a Measure performance of best model against this set<br />
+<p>a. Measure performance of best model against this set<br />
 b. No automated model creation after this  </p></li>
-</ol>
-
-<h2>"Steps"</h2>
-
-<ol>
-<li>Grab a batch of data</li>
-<li>Calculate the partial derivative of each data point given the <strong>W</strong></li>
-<li>Move the weights the step increment in the direction that reduces cost</li>
 </ol>
 
 <h2>"Cost"</h2>

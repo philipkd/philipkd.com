@@ -1,0 +1,49 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>positional encoding</title>
+
+</head>
+
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">positional encoding</div>
+
+<p>An extra pre-calculated input to go alongside word embeddings (see <a href="Transformers">Transformers</a>) to represent a word's "relative position" in a sentence. The input is the same length as the number of dimensions in the word embeddings.</p>
+
+<h1>Relative position</h1>
+
+<p>If you just embed 0, 1, or 2 to represent the 1st, 2nd, and 3rd position of a word in a sentence, any calculated weights would be meaningless if the word appears in a similar sub-clause in a longer sentence.</p>
+
+<p>For example, if the phrase "black cat" was the first words of a sentence, you'd want "cat" at position 1 to pay attention to position 0, but if "black cat" were at position 10, you'd want "cat" at position 11 to pay attention to "black" at position 10.</p>
+
+<h1>Representation</h1>
+
+<p>If "cat" were a vector with 64 elements (with values like: (389.3, -0.128, 193.9, ...)), its positional encodings would be these 64-element vectors:</p>
+
+<p><code>"cat" =&gt; 0th position =&gt; [0, 1, 0, 1, ...]</code></p>
+
+<p><code>"hello cat" =&gt; 1st position =&gt; [.84, .54, .64, .73, .53, ...]</code></p>
+
+<p><code>"Oh, hello cat" =&gt; 2nd position =&gt; [.91, -4.2, 1.00, 0.08, .90, ...]</code></p>
+
+<h1>Calculation</h1>
+
+<p>This is a graph of ten positions, for models with corresponding 64-dimensional embeddings. The graph's height can be made arbitrarily long:</p>
+
+<p><img src="positional-encoding.png" alt="" /></p>
+
+<p>The shape of a row is like a descending wave of sawteeth going from [-1,1], where the sharpness of the teeth is inversely proportional to the row's position. The resulting gradient weights will then correspond to the distance between related tokens.</p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

@@ -13,17 +13,25 @@
 
 </head>
 
-<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
 
 <div class="entry">
 
 <div class="page-title">convolutional neural networks</div>
 
-<h1>Note</h1>
+<p>Accuracy on MNIST: 99%</p>
 
-<p>Has 99% accuracy on MNIST</p>
+<p>CNNs are the most popular example of <strong>deep learning</strong>. What separates deep learning from ordinary machine learning is the innovation of having multiple layers. Multiple layers enable greater model complexity. Each layer creates further abstractions that build to a hierarchical feature representation.</p>
 
-<h1>High-Level Concept</h1>
+<h1>Popular implementations</h1>
+
+<ul>
+<li><a href="ResNet">ResNet</a></li>
+<li><a href="ResNeSt">ResNeSt</a></li>
+<li><a href="ResNeXt">ResNeXt</a></li>
+</ul>
+
+<h1>High-Level Concepts</h1>
 
 <h2>Convolution</h2>
 
@@ -50,9 +58,13 @@
 <p><strong>max pooling</strong> takes the maximum value of the 9 squares
 <strong>average pooling</strong> takes the average value of the 9 squares</p>
 
-<h2>Fully Connected Layer</h2>
+<h2>Fully Connected (<a href="https://forums.fast.ai/t/dense-vs-convolutional-vs-fully-connected-layers/191">a.k.a.</a> Dense) Layer</h2>
 
-<p>Takes the weights of all the previous layers and figures out what to multiply them by to spit out a classification. Two FCs are used for <a href="https://stackoverflow.com/questions/47007658/idea-behind-how-many-fully-connected-layers-should-be-use-in-a-general-cnn-netwo">optimization reasons</a>.</p>
+<p>A <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dense">dense layer</a>, without any modifications, is simply the <em>M</em> in <em>y = Mx + b</em>. The last dimension of <em>M</em> is whatever you want the last dimension of <em>y</em> to be, also called "units." the 1st dimension of the output (<em>y</em>) is the first dimension of (<em>x</em>). If the rank (number of dimensions) of the input is greater than 2, then the shape of <em>y</em> is the input's first n-1 dimensions, and the nth dimension is the units.</p>
+
+<p>A stack of pure dense layers is redundant, since they can be represented by one dense layer. In deep learning, for multiple dense layers to be meaningful, there have to be other non-linear interactions, either between the layers themselves, or more commonly, with non-linear activation functions on the dense layers.</p>
+
+<p>Two FCs are used in CNNs for <a href="https://stackoverflow.com/questions/47007658/idea-behind-how-many-fully-connected-layers-should-be-use-in-a-general-cnn-netwo">optimization reasons</a>.</p>
 
 <p><img src="cnn-overview.jpg" alt="" /></p>
 
@@ -62,7 +74,9 @@
 
 <p>When you <strong>mixup</strong>, you add more samples that are mixes of two samples, like a cat overlaid with a dog at 50% alpha, and the label being (0.5,0.5). This process helps prevent overfitting by essentially making the model more of a probabilistic thinker.</p>
 
-<p><strong>TTA</strong> (test-time augmentation) augments the test dataset with flips, etc. It then predicts on those augs and ensembles them</p>
+<p><strong>TTA</strong> (test-time augmentation) augments the test dataset with flips, etc. It then predicts on those augs and ensembles them.</p>
+
+<p><strong>sub-sampling</strong> scales an image by removing every other row/column.</p>
 
 <br/>
 <a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

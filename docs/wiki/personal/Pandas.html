@@ -13,15 +13,21 @@
 
 </head>
 
-<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
 
 <div class="entry">
 
 <div class="page-title">Pandas</div>
 
-<p><em>means 'panel data' from econometrics</em></p>
+<p>Pandas means 'panel data' from econometrics</p>
 
-<h1>Frames</h1>
+<p>A Series is a one-dimensional labeled array capable of holding any data type. A DataFrame is a 2-dimensional labeled data structure ith columns of potentially different types. <a href="https://stackoverflow.com/questions/26047209/what-is-the-difference-between-a-pandas-series-and-a-single-column-dataframe">source</a></p>
+
+<h1>convert dict to DataFrame</h1>
+
+<p><code>pd.DataFrame(df.items())</code></p>
+
+<h1>frames</h1>
 
 <p><code>.loc</code> = <strong>loc</strong>ate by name<br />
 <code>.iloc</code> = <strong>loc</strong>ate by <strong>i</strong>ndex number<br />
@@ -29,9 +35,26 @@
 <code>.describe()</code><br />
 <code>.drop_duplicates(keep='first'|'last'|False, subset=cols)</code>  </p>
 
-<h1>Series</h1>
+<h1>options</h1>
+
+<p><code>pd.set_option('display.max_rows', 500)
+pd.set_option('display.float_format', lambda x: '%.5f' % x)</code></p>
+
+<p><code>pd.reset_option('display.float_format')</code></p>
+
+<h1>plotting</h1>
+
+<p><code>plt.figure.figsize=(10,5)</code> increases the size in inches (Note: <code>plt</code> is the package)</p>
+
+<h1>series</h1>
 
 <p><code>.value_counts()</code> can tell us the frequency of all values in a column</p>
+
+<h1>read_csv</h1>
+
+<p><code>low_memory: True</code> (default)</p>
+
+<p><code>True</code> means you have low memory, and want to read the file in chunks. The tradeoff being that the datatype will be mixed, as opposed to the whole file being read at once, and then determined after the fact.</p>
 
 <br/>
 <a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

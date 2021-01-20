@@ -1,0 +1,104 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>Transformers</title>
+
+</head>
+
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">Transformers</div>
+
+<p>The parent of Transformers is word2vec, which converts words into <strong>embeddings</strong>, which are vectors representing sample as continuous values in a dictionary of the input space. (e.g., "cat" = "dog" + "whiskers." A 2-dimensional embedding means a cat is something like (389.8, -139.0)).</p>
+
+<p>The input of Transformers is a sequence and the output is typically a prediction as to what's next in the sequence. The sequence's tokens are converted into embeddings, and are combined with relative position vectors in the sequence, which together is called <strong>attention</strong>.</p>
+
+<p>Predecessors to GPT-2, which were used for language translation, were encoder-decoders, translating whole sentences. GPT-2 dropped the encoder, and just used decoders, with the modification of <strong>masked self-attention</strong>, which hides the future of the whole sentence from the head's position, and then figures out what goes at the end of the partial sentence. Then it builds the sentences up from there.</p>
+
+<h1>Concepts</h1>
+
+<p><strong>autoencoders</strong> encode to a "bottleneck" layer, then decode and see how much loss there was with the original. The idea being that the "bottleneck" layer distills the essence of the original input.</p>
+
+<p><strong>layer normalization</strong> takes a sequence of outputs, centers them over their average, and then re-scales them so that their standard deviation is 1.</p>
+
+<p><strong>Seq2Seq</strong> uses an <strong>encoder</strong> and <strong>decoder</strong>. The encoder's mother tongue is let's say, English, and the decoder's tongue is let's say, German. The encoder encodes the English sentence into an imaginary language, which the decoder can then read and turn into German.</p>
+
+<p><strong>temperature</strong> is similar to temperature in <a href="simulated_annealing">simulated annealing</a> with higher temperatures leading to more diversity, but potentially more mistakes.</p>
+
+<h2>Lookahead mask</h2>
+
+<p><em>Note: masks are like real-world masks, where <code>true</code> means hidden</em></p>
+
+<p>The lookahead mask is a triangle matrix with <code>true</code> values in the upper-right-hand corner, with the width and height equal to the sequence length. When multiplied with the attention calculation, the mask results in the nth token in the output sequence only attending to tokens from positions 0 to n.</p>
+
+<p>The mask is a key feature that enables the use of self-attention at inference. Since the output is unknown, the attention graph can't be known. Transformers get around this by manually setting the first token of the output to a start token, then building up the subsequent tokens one-at-a-time, with the attentional graph emerging along with it. This design does not obtain the maximally accurate attentional graph, though, due to its backwards-looking bias. But for most sequential transductional tasks, such as language translation, the design is close enough.</p>
+
+<h2><a href="https://stats.stackexchange.com/a/424127/126653">Query-Key-Value</a></h2>
+
+<p>Queries are matched against <a href="https://towardsdatascience.com/attention-and-its-different-forms-7fc3674d14dc">key-value</a> pairs. (e.g., When you search for a video on YouTube, your keywords are the query, which are matched against the keys (video title, description, etc.), thus presenting the best matched video (value).)</p>
+
+<p><strong>scaled dot-product attention</strong> dot-products a query vector with a series of key vectors for a "match." The more similar they are, the larger the logit. These logits are softmaxed producing the so-called "attention" which corresponds to best matches. The values corresponding to the keys are then returned probabilistically, which is typically a weighted sum of the values. (e.g., a little bit of each of the best matching videos would be represented.)</p>
+
+<h1>Optimizing</h1>
+
+<p><em>See also: <a href="https://ufal.mff.cuni.cz/pbml/110/art-popel-bojar.pdf">Training Tips for the Transformer Model</a> by Martin Popel</em></p>
+
+<h2>depth/width variance</h2>
+
+<p>"In each experiment, the authors vary the size of the model in terms of its depth (2–24 layers) and width (hidden size 128–2024)." <a href="https://towardsdatascience.com/this-is-how-to-train-better-transformer-models-d54191299978">source</a></p>
+
+<h2>embedding dimension</h2>
+
+<p>"The key factors for deciding on the optimal embedding dimension are mainly related to the availability of computing resources (smaller is better, so if there's no difference in results and you can halve the dimensions, do so), task and (most importantly) quantity of supervised training examples." <a href="https://stackoverflow.com/a/48480069/210173">source</a></p>
+
+<p>"You can carry out a similar experiment using values from three orders of magnitude 10, 100, and 1000. The required dimension size will depend on the task too. I speculate that a classification (discriminative) task would require fewer dimensions than a sentence generation task." <a href="https://datascience.stackexchange.com/a/51549/95898">source</a></p>
+
+<h1>Transformer model evolution</h1>
+
+<ol>
+<li>LTSM / GRUs (RNNs)</li>
+<li>Transformers such as BERT (Remove RNN)</li>
+</ol>
+
+<p>LTSM and GRUs were both attention-based Seq2Seq models, but they used RNNs. Transformers removed the RNN component, and found that attention was sufficient. This allowed for parallelization, rather than having to train words in sequence, thus drastically reducing training time. Training on large datasets was the key innovation of GPT.</p>
+
+<h1>Timeline</h1>
+
+<ul>
+<li>Jun 2017 - Transformers / <a href="https://arxiv.org/abs/1706.03762v5">Attention Is All You Need</a></li>
+<li>Jan 2018 - ULMFit</li>
+<li>Feb 2018 - ELMo</li>
+<li>Jun 2018 - GLoMo</li>
+<li>Jun 2018 - GPT</li>
+<li>Oct 2018 - BERT</li>
+<li>Jan 2019 - Transformer-XL</li>
+<li>Feb 2019 - GPT-2</li>
+<li>May 2020 - GPT-3</li>
+</ul>
+
+<p><a href="https://medium.com/mlreview/understanding-building-blocks-of-ulmfit-818d3775325b">source</a></p>
+
+<h2>ULMFiT</h2>
+
+<p>"Universal Language Model Fine-Tuning" has <a href="https://medium.com/mlreview/understanding-building-blocks-of-ulmfit-818d3775325b">three building blocks</a>:</p>
+
+<ol>
+<li>LM pre-training on a general, big corpus, such as wikitext</li>
+<li>LM fine-tuning on a target corpus </li>
+<li>Classifier fine-tuning which unfreezes the layers one at a time, starting with the last.</li>
+</ol>
+
+<p>The LM used is AWD-LSTM (ASGD Weight-Dropped LSTM).</p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

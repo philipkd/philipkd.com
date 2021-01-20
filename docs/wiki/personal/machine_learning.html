@@ -13,11 +13,43 @@
 
 </head>
 
-<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
 
 <div class="entry">
 
 <div class="page-title">machine learning</div>
+
+<h1>Model types</h1>
+
+<p>Popular:</p>
+
+<ol>
+<li><a href="linear_regression">linear regression</a></li>
+<li><a href="convolutional_neural_networks">convolutional neural networks</a></li>
+<li><a href="Transformers">Transformers</a></li>
+</ol>
+
+<p>In <strong>a recurrent neural network</strong>, y is fed back into itself.</p>
+
+<p><strong>unsupervised learning</strong> takes, for example, MNIST but without labels, and then figures out the obvious classifications. (<a href="https://www.youtube.com/watch?v=rHeaoaiBM6Y">comparison with supervised learning</a>; See also: <strong>self-supervised learning</strong> below)</p>
+
+<p><a href="NLP">NLP</a> models</p>
+
+<h1>Toolchain</h1>
+
+<ol>
+<li><a href="GPUs">GPUs</a>, <a href="Python">Python</a>, <a href="Conda">Conda</a>, <a href="NumPy">NumPy</a></li>
+<li><a href="Pandas">Pandas</a>, <a href="PyTorch">PyTorch</a>, <a href="TensorFlow">TensorFlow</a>  </li>
+<li><a href="Colab">Colab</a>, <a href="Jupyter">Jupyter</a>, <a href="Kaggle">Kaggle</a> </li>
+</ol>
+
+<h1>Introduction</h1>
+
+<p><strong>feedforward neural networks</strong>, or multilayer perceptrons(MLPs), approximate some function in the real-world <em>f</em>. For example, for a real-world classifier, y = <em>f</em>(x) maps an input x to a category y.</p>
+
+<p>A tensor walks through a series of layers (multiple layers = <strong>deep learning</strong>), and at each point finds itself transformed, until it results in some output. Each layer contains a fixed series of operations, typically involving some type of matrix math and some other simple operations, such as square roots or <a href="ReLU">ReLU</a>. The weights of the matrices are the trainable parameters of that layer. In the case of a classifier, that output tensor is then typically softmaxed into a prediction.</p>
+
+<p>Models have two modes. In inference, the input tensor is known, the output tensor is unknown, and the tensor walks through the trained known weights. In training, the input tensor and the output tensors are known, but the weights are unknown.</p>
 
 <h1>Definitions</h1>
 
@@ -26,6 +58,8 @@
 <p><strong>cross-validation (CV)</strong> is a fancy term for splitting samples into validation and training sets.</p>
 
 <p><strong><a href="F1">F1</a></strong></p>
+
+<p><strong>hidden layers</strong> are the layers between input and output. <a href="https://stackoverflow.com/questions/53838304/format-of-adding-hidden-layers-in-keras">source</a></p>
 
 <p><strong>logits</strong> are (-inf,inf) "raw" prediction values, which are usually the last layer, which are then thrown into softmax</p>
 
@@ -39,61 +73,27 @@
 
 <p><strong>softmax</strong> normalizes inputs that are all over the place, and puts them from [0,1], so that they sum to 1. Gives you the best guess of an answer. It weights answers by exponenting them.</p>
 
-<p><strong>top-1</strong> looks at the accuracy of your highest probability label</p>
-
-<h1>Network Classes</h1>
-
-<p><strong>feedforward neural networks</strong>, or multilayer perceptrons(MLPs), approximate some function in the real-world <em>f</em>. For example, for a real-world classifier, y = <em>f</em>(x) maps an input x to a category y.</p>
-
-<p>Typically, this turns into y = Mx + b, where y is a column of "results" where each row is a classification. y is then softmaxed into a prediction.</p>
-
-<p>In <strong>a recurrent neural network</strong>, y is fed back into itself.</p>
-
-<p><strong>unsupervised learning</strong> takes, for example, MNIST but without labels, and then figures out the obvious classifications. (<a href="https://www.youtube.com/watch?v=rHeaoaiBM6Y">comparison with supervised learning</a>; See also: <strong>self-supervised learning</strong> in <a href="NLP">NLP</a>)</p>
-
-<p><a href="NLP">NLP</a></p>
-
-<h2>Computer Vision Sequence</h2>
-
-<ol>
-<li><a href="linear_regression">linear regression</a></li>
-<li><a href="convolutional_neural_networks">convolutional neural networks</a></li>
-<li><a href="ResNet">ResNet</a></li>
-<li><a href="ResNeSt">ResNeSt</a>, <a href="ResNeXt">ResNeXt</a></li>
-</ol>
+<p><strong>top-k</strong> looks at the accuracy of your highest probability label (top-1 picks the top one, top-3 samples probabilistically from top 3)</p>
 
 <h1>Techniques</h1>
 
 <p><strong>dropout</strong> temporarily inactivates neurons during training so that the remaining sparse network is more responsible for nailing the proper output rather than embedding the noise, thus preventing overfitting.</p>
 
+<p><strong><a href="ensemble_learning">ensemble learning</a></strong></p>
+
 <p><strong><a href="k-folds_validation">k-folds validation</a></strong></p>
 
 <p><strong>k-means clustering</strong> puts data points into <em>k</em> clusters, where sum of squared distances to centroid of each cluster is minimal. You find centroid by a type of shuffling that includes finding nearest point to centroid.</p>
+
+<p><strong><a href="optimizing_machine_learning">optimizing machine learning</a></strong></p>
 
 <p><strong><a href="pseudo-labeling">pseudo-labeling</a></strong></p>
 
 <p><strong><a href="regularization">regularization</a></strong></p>
 
+<p><strong>self-supervised learning</strong> uses a transformation on a sample to predict other transformation (typically identity) of sample. In the case of text, using previous words (subset) to predict next likely words (subset). In the case of an image, jigsawing it (scramble) then figuring out how to put it back together (identity), or grayscaling it (decolorizing), and figuring out how to recolorize it (identity).</p>
+
 <p><strong><a href="simulated_annealing">simulated annealing</a></strong> is based on annealing in metallurgy. You start at an "annealing temperature" and slowly reduce it so the molecules settle into lattice networks that are tighter than if cooled quickly. Likewise, in something like the traveling salesman problem, we take a random route, and modify it randomly. If the modification reduces the cost, we take it. If not we decide with probability <em>p</em> whether to take it. We then gradually reduce <em>p</em>. Simulated annealing starts with favoring <em>exploration</em> and ends with favoring <em>exploitation</em> in its search for an optimal solution. SA is a type of <strong>scheduler</strong> which determines how the learning rate should change over time. Other schedulers include consine annealing which just keeps moving the LR up and down.</p>
-
-<h1>Tools</h1>
-
-<p><a href="GPUs">GPUs</a><br />
-<a href="Numpy">Numpy</a><br />
-<a href="Pandas">Pandas</a><br />
-<a href="Python">Python</a><br />
-<a href="PyTorch">PyTorch</a><br />
-<a href="TensorFlow">TensorFlow</a>  </p>
-
-<h2>Notebooks</h2>
-
-<p><a href="Colab">Colab</a><br />
-<a href="Jupyter">Jupyter</a><br />
-<a href="Kaggle">Kaggle</a>  </p>
-
-<h1>Note on Training</h1>
-
-<p><em>More important is the validation and training error. As long as it keeps dropping training should continue.</em></p>
 
 <br/>
 <a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

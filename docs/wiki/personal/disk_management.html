@@ -1,0 +1,49 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>disk management</title>
+
+</head>
+
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">disk management</div>
+
+<h1>disk usage</h1>
+
+<p><code>du -sh .</code> (<code>-s</code> is summary of disk usage, <code>-h</code> is human readable)<br />
+<code>du -sh *</code> summarizes each item in that folder<br />
+<code>du -sh * | sort -rh | head -5</code> shows top 5 largest paths<br />
+(<code>-r</code> reverses, and <code>-h</code> does human sort, taking into account suffixes)</p>
+
+<p><code>df -h</code> shows free disk space on various devices</p>
+
+<h1><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html">mounting a disk</a></h1>
+
+<p><code>lsblk</code> lists block devices<br />
+<code>sudo file -s /dev/xvdf</code> shows file system for attached volumes (<code>-s</code> is for special files)<br />
+<code>sudo mount /dev/xvdf /data</code> mounts block  </p>
+
+<h1><a href="https://cloud.google.com/compute/docs/disks/add-persistent-disk">resizing a disk</a></h1>
+
+<p><code>df -Th</code> shows disks (<code>-T</code> shows file system type)<br />
+<code>lsblk</code> shows partitions<br />
+<code>sudo apt -y install cloud-guest-utils</code> gets you <code>growpart</code><br />
+<code>sudo growpart /dev/sda 1</code><br />
+<code>sudo resize2fs /dev/sda1</code> for <code>ext4</code> file systems<br />
+<code>sudo xfs_growfs /mountpoint</code> for <code>xfs</code>  </p>
+
+<p><em>Note: MBR (i.e. boot) disks are max 2TB</em></p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

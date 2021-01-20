@@ -13,7 +13,7 @@
 
 </head>
 
-<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
 
 <div class="entry">
 
@@ -23,30 +23,84 @@
 
 <p>GPU Quota resets Friday 5p PT.</p>
 
-<p>"Save &amp; Run All" (batch runs) must execute <a href="https://www.kaggle.com/docs/notebooks">within 9 hours</a></p>
+<p>"Save &amp; Run All" (batch runs) must execute <a href="https://www.kaggle.com/docs/notebooks">within 9 hours</a>.</p>
 
-<p>Submisisons reset at <a href="https://www.kaggle.com/c/dunnhumbychallenge/discussion/901">midnight UTC</a>, or 5p PT</p>
+<p>Submisisons reset at <a href="https://www.kaggle.com/c/dunnhumbychallenge/discussion/901">midnight UTC</a>, or 5p PT.</p>
 
-<p>On the Notebooks tab, "Recently Run" is based on the last save. "Recently Created" is based on the first save</p>
+<p>On the Notebooks tab, it's ambiguous, but the most logical meaninngs are: "Recently Run" is by last save, "Recently Created" is by first save.</p>
 
-<h1>Batch run output</h1>
+<p>Notebook "[spoiler alert]" begins in the last week of the competition.</p>
 
-<p>When a batch run is force closed:</p>
+<h1>Types of runs</h1>
+
+<p>Notebooks are run three times:</p>
+
+<ol>
+<li>Browser Run → <code>submission_a.csv</code></li>
+<li>Save &amp; Run →  <code>submission_a.csv</code></li>
+<li>Submission Run → <code>submission_b.csv</code></li>
+</ol>
+
+<p>Scoring happens twice:</p>
+
+<ol>
+<li>Public LB: <code>submission_b.csv</code> (fraction)</li>
+<li>Private LB: <code>submission_b.csv</code> (whole)</li>
+</ol>
+
+<h1>Reading batch run output</h1>
+
+<p>While running:</p>
+
+<ol>
+<li>Edit a notebook</li>
+<li>Click the numbered button ("Show Versions")</li>
+<li>Click "..."</li>
+<li>View Logs</li>
+</ol>
+
+<p>When the VM is shut-down because of a memory error:</p>
 
 <ul>
 <li>No cell output</li>
 <li>No log</li>
 </ul>
 
-<p>Batch run is closed manually:</p>
+<p>When you click "stop batch run":</p>
 
 <ul>
-<li>No cell output</li>
+<li>No cell output preserved</li>
 <li>Log preserved</li>
 <li>Output files preserved</li>
 </ul>
 
 <p><em>Note: no difference noticed between print and echo</em></p>
+
+<h1>Docker</h1>
+
+<p>docker run -d --runtime nvidia \
+--mount source=vol<em>name,target=/home/jupyter \
+-p 127.0.0.1:8080:8080 \
+--shm-size=8g \
+gcr.io/kaggle-gpu-images/python:latest \
+/run</em>jupyter.sh</p>
+
+<h1>GCP integration</h1>
+
+<ul>
+<li>persistent disks should not be deleted upon exit</li>
+<li>persistent disks need an extra 50G for the docker</li>
+<li>original volumes are detached on restart
+
+<ul>
+<li>change mounts in container config (See <a href="Docker">Docker</a>)</li>
+</ul></li>
+<li>"It is possible that dataloader's workers are out of shared memory" <a href="https://github.com/pytorch/pytorch/issues/5040">thread</a>
+
+<ul>
+<li>change host config's shared memory to 8GB (see <a href="Docker">Docker</a>)</li>
+</ul></li>
+</ul>
 
 <br/>
 <a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

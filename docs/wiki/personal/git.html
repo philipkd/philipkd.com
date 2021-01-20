@@ -13,7 +13,7 @@
 
 </head>
 
-<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
 
 <div class="entry">
 
@@ -23,6 +23,15 @@
 
 <p><code>git submodule update --init docs/mediumesque</code> fetches an existing submodule to a directory
 <code>git clone --recurse-submodules https://github.com/chaconinc/MainProject</code> is recursive</p>
+
+<h1>Rebasing</h1>
+
+<p>To squash a bunch of commits into one:</p>
+
+<p><code>git reset --soft HEAD~3 &amp;&amp;
+git commit</code></p>
+
+<p>This points the index to the 4th most recent commit. All the changes since become commitable files in the working tree.</p>
 
 <br/>
 <a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

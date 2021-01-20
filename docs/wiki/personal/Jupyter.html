@@ -13,7 +13,7 @@
 
 </head>
 
-<div class="site-title"><a href="/wiki/">Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
 
 <div class="entry">
 
@@ -28,6 +28,10 @@
 
 <p><code>from IPython.display import display, Markdown, Audio, Image</code></p>
 
+<h1>Running other notebooks</h1>
+
+<p><code>%run</code> runs another notebook as if the code was copied and pasted</p>
+
 <h1>Running on Server</h1>
 
 <p>remote: <code>jupyter lab --NotebookApp.token=""</code></p>
@@ -39,6 +43,24 @@
 <p><code>jupyter lab --NotebookApp.allow_origin='https://colab.research.google.com' --NotebookApp.token=""</code></p>
 
 <p><code>--NotebookApp.port_retries=0</code> and <code>--no-browser</code> might also be necessary</p>
+
+<h1>Timing operations</h1>
+
+<p><code>%%time</code> shows wall time (refers to IRL clock on <em>wall</em>) for entire cell.<br />
+<code>%time</code> shows for just one line.</p>
+
+<h1>Config</h1>
+
+<p><code>jupyter notebook --generate-config</code> then</p>
+
+<p><code>c.LabApp.token = ''
+c.LabApp.password = HASH
+c.LabApp.open_browser = False</code>
+c.LabApp.notebook_dir = '...'</p>
+
+<p>To get the hash, run in Python: <code>from notebook.auth import passwd; passwd()</code></p>
+
+<p>To edit the indent size: Settings > Advanced Settings > Notebook</p>
 
 <br/>
 <a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

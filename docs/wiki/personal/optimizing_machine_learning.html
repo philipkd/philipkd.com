@@ -1,0 +1,61 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>optimizing machine learning</title>
+
+</head>
+
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">optimizing machine learning</div>
+
+<p>Activity categories:</p>
+
+<ul>
+<li>feature engineering</li>
+<li>interpreting results</li>
+<li>hyperparameter tuning</li>
+</ul>
+
+<h1>Cross-validation</h1>
+
+<blockquote>
+  <p>More important is the validation and training error. As long as it keeps dropping training should continue.</p>
+</blockquote>
+
+<p><a href="https://www.researchgate.net/post/How_to_determine_the_correct_number_of_epoch_during_neural_network_training#:~:text=More%20important%20is%20the%20the,based%20on%20the%20error%20rates.">source</a></p>
+
+<h1>Hyperparameters</h1>
+
+<blockquote>
+  <p>In fact, if there are resources to tune hyperparameters, much of this time should be dedicated to tuning the learning rate. The learning rate is perhaps the most important hyperparameter. If you have time to tune only one hyperparameter, tune the learning rate.</p>
+</blockquote>
+
+<p><a href="https://machinelearningmastery.com/learning-rate-for-deep-learning-neural-networks/">source</a></p>
+
+<blockquote>
+  <p>The choice of optimization algorithm for your deep learning model can mean the difference between good results in minutes, hours, and days.</p>
+</blockquote>
+
+<p><a href="https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/">source</a></p>
+
+<h1>Profiling</h1>
+
+<blockquote>
+  <p>Did anyone here bother to profile it? The culprit was multiple ilocs on an unfiltered dataframe. Simple converting over to numpy at dataset load makes this kitty pur 15x (1500%) faster on my desktop machine and my dual gpu's remain well fed at +90% utilization.</p>
+</blockquote>
+
+<p><a href="https://www.kaggle.com/c/rsna-str-pulmonary-embolism-detection/discussion/191954#1061149">source</a></p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>
