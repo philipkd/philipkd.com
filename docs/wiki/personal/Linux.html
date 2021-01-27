@@ -36,7 +36,11 @@
 read = 4, write = 2, execute = 1<br />
 ex: <code>chmod 600 keys</code></p>
 
-<h1>cron best practices</h1>
+<h1>cron</h1>
+
+<p><code>EDITOR=nano crontab -e</code> then five <code>*</code>s</p>
+
+<h2>best practices</h2>
 
 <ol>
 <li>use a script</li>
@@ -48,7 +52,7 @@ ex: <code>chmod 600 keys</code></p>
 
 <h1>curl</h1>
 
-<p><code>curl https://some.url --output file</code></p>
+<p><code>curl --silent https://some.url --output file</code></p>
 
 <h1><a href="disk_management">disk management</a></h1>
 
@@ -62,7 +66,7 @@ ex: <code>chmod 600 keys</code></p>
 <p><code>timedatectl list-timezones</code>
 <code>sudo timedatectl set-timezone America/Los_Angeles</code></p>
 
-<p><a href="https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/">in-shell</a>: <code>$(date +"%Y-%m-%d %H:%M:%S")</code></p>
+<p><a href="https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/">in-shell</a>: <code>$(date +'%Y-%m-%d %H:%M:%S')</code></p>
 
 <h1>find folder</h1>
 
