@@ -19,6 +19,10 @@
 
 <div class="page-title">Python</div>
 
+<h1>arguments</h1>
+
+<p><code>*</code> and <code>**</code> in both function prototypes or calls expands a list or dict</p>
+
 <h1>argparse</h1>
 
 <p><code>args = parse_arguments(['--flag','1'])</code></p>
@@ -65,47 +69,7 @@ copy(src, dst)</code></p>
 
 <p><code>psutil.virtual_memory().percent</code> is used by <a href="https://www.kaggle.com/leadbest/sakt-riiid-lgbm-bagging2/">@leadbest</a></p>
 
-<h2><a href="https://stackoverflow.com/a/23883524/210173">mem_top</a></h2>
-
-<p>Reveals top classes with high reference counts</p>
-
-<h2>Object Graphs</h2>
-
-<p>Show growth in object types on the heap:</p>
-
-<p><code>objgraph.show_growth()
-do_something()
-objgraph.show_growth()</code>  </p>
-
-<h2>GPU Stats</h2>
-
-<p>Snippet that has comparable GPU stats to Kaggle:</p>
-
-<p><code>import subprocess as sp
-_output_to_list = lambda x: x.decode('ascii').split('\n')[:-1]
-ACCEPTABLE_AVAILABLE_MEMORY = 1024
-COMMAND = "nvidia-smi --query-gpu=memory.used --format=csv"
-memory_used_info = _output_to_list(sp.check_output(COMMAND.split()))[1:]
-memory_used_values = [int(x.split()[0]) for i, x in enumerate(memory_used_info)]
-print("GPU MEM: %0.1f / 15.9 GB" % (memory_used_values[0] / 1000))</code></p>
-
-<p><a href="https://stackoverflow.com/questions/59567226/how-to-programmatically-determine-available-gpu-memory-with-tensorflow">source (tweaked)</a></p>
-
-<h2>LD_PRELOAD jemalloc</h2>
-
-<p>Setting jemalloc as the default allocator is <a href="https://github.com/pandas-dev/pandas/issues/2659#issuecomment-457193523">a popular solution</a></p>
-
-<h2>LRU&#95;CACHE_CAPACITY=1</h2>
-
-<p>Setting LRU&#95;CACHE_CAPACITY=1 is a magical solution for memory leaks when "<a href="https://github.com/pytorch/pytorch/issues/29893">evaluating model on CPU with dynamic size tensor input.</a>"</p>
-
-<h2>malloc_trim</h2>
-
-<p><a href="https://github.com/pandas-dev/pandas/issues/2659#issuecomment-415177442">Solution for cyclic GC issues</a></p>
-
-<h2>multiprocessing pool</h2>
-
-<p><a href="https://stackoverflow.com/a/39101287/210173">Spawning a separate process</a> will sandbox the memory</p>
+<p>See: <a href="Python_memory_management">Python memory management</a></p>
 
 <h1>object type</h1>
 
@@ -113,13 +77,17 @@ print("GPU MEM: %0.1f / 15.9 GB" % (memory_used_values[0] / 1000))</code></p>
 
 <h1>package management</h1>
 
-<p>See: <a href="Conda">Conda</a></p>
+<p>See: <a href="pip-conda">pip-conda</a></p>
 
 <h1>random numbers</h1>
 
 <p><code>from random import seed, random, randint
 seed(42)
 randint(0,10) # inclusive</code> </p>
+
+<h1>variable annotations</h1>
+
+<p><code>var_name: type</code> provides hints for IDEs, but doesn't strictly type</p>
 
 <br/>
 <a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

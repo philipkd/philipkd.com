@@ -1,0 +1,65 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/wiki.css">
+
+<title>Python memory management</title>
+
+</head>
+
+<div class="site-title"><a href="./">Personal Wiki</a> by <a href="https://philipkd.com/">Philip Dhingra</a></div>
+
+<div class="entry">
+
+<div class="page-title">Python memory management</div>
+
+<h1><a href="https://stackoverflow.com/a/23883524/210173">mem_top</a></h1>
+
+<p>Reveals top classes with high reference counts</p>
+
+<h1>Object Graphs</h1>
+
+<p>Show growth in object types on the heap:</p>
+
+<p><code>objgraph.show_growth()
+do_something()
+objgraph.show_growth()</code>  </p>
+
+<h1>GPU Stats</h1>
+
+<p>Snippet that has comparable GPU stats to Kaggle:</p>
+
+<p><code>import subprocess as sp
+_output_to_list = lambda x: x.decode('ascii').split('\n')[:-1]
+ACCEPTABLE_AVAILABLE_MEMORY = 1024
+COMMAND = "nvidia-smi --query-gpu=memory.used --format=csv"
+memory_used_info = _output_to_list(sp.check_output(COMMAND.split()))[1:]
+memory_used_values = [int(x.split()[0]) for i, x in enumerate(memory_used_info)]
+print("GPU MEM: %0.1f / 15.9 GB" % (memory_used_values[0] / 1000))</code></p>
+
+<p><a href="https://stackoverflow.com/questions/59567226/how-to-programmatically-determine-available-gpu-memory-with-tensorflow">source (tweaked)</a></p>
+
+<h1>LD_PRELOAD jemalloc</h1>
+
+<p>Setting jemalloc as the default allocator is <a href="https://github.com/pandas-dev/pandas/issues/2659#issuecomment-457193523">a popular solution</a></p>
+
+<h1>LRU&#95;CACHE_CAPACITY=1</h1>
+
+<p>Setting LRU&#95;CACHE_CAPACITY=1 is a magical solution for memory leaks when "<a href="https://github.com/pytorch/pytorch/issues/29893">evaluating model on CPU with dynamic size tensor input.</a>"</p>
+
+<h1>malloc_trim</h1>
+
+<p><a href="https://github.com/pandas-dev/pandas/issues/2659#issuecomment-415177442">Solution for cyclic GC issues</a></p>
+
+<h1>multiprocessing pool</h1>
+
+<p><a href="https://stackoverflow.com/a/39101287/210173">Spawning a separate process</a> will sandbox the memory</p>
+
+<br/>
+<a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

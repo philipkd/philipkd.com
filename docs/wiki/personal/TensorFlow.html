@@ -31,5 +31,22 @@
 
 <p>If you want to configure how the output in IPython is displayed, configure <a href="NumPy">NumPy</a>.</p>
 
+<h1><a href="https://www.tensorflow.org/api_docs/python/tf/compat/v1/enable_eager_execution">eager execution</a></h1>
+
+<blockquote>
+  <p>TensorFlow functions execute operations immediately (as opposed to adding to a graph to be executed later in a <code>tf.compat.v1.Session</code>) and return concrete values (as opposed to symbolic references to a node in a computational graph).</p>
+</blockquote>
+
+<h1>TFRecords</h1>
+
+<p><strong>protocol buffers</strong> are an XML-like data format created by Google, but designed to generate native code with the data. "protocol message" refers to the data in an abstract sense, while the "buffer" refers to the serialized copy of the message. <a href="https://developers.google.com/protocol-buffers/docs/faq#:~:text=been%20open%2Dsourced.-,Why%20the%20name%20%22Protocol%20Buffers%22%3F,buffer%20for%20an%20individual%20method.">source</a></p>
+
+<p>Techniques:</p>
+
+<ul>
+<li><p>Google's <a href="https://github.com/google/tensorflow-recorder">tensorflow-recorder</a> takes a DF and turns it into TFRecords. However, it also rolls back your version of TensorFlow</p></li>
+<li><p>This <a href="https://gist.github.com/usmcamp0811/8af48beb3f383165c06b8ee71588d498">gist</a> is a simple, readable example code for turning a DF or CSV into a TFRecord.</p></li>
+</ul>
+
 <br/>
 <a href="https://licensebuttons.net/l/by/4.0/"><img src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>

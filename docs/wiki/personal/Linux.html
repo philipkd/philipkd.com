@@ -48,6 +48,8 @@ ex: <code>chmod 600 keys</code></p>
 <li>include <code>cd $(dirname $0)</code> at top of script to change to script's current directory</li>
 <li>see log in <code>grep CRON /var/log/syslog</code></li>
 <li>append <code>2&gt;&amp;1</code> to redirect stderr to stdout</li>
+<li>may need <code>sudo apt-get install postfix</code> and <code>sudo tail -f /var/mail/&lt;user&gt;</code> to <a href="https://askubuntu.com/questions/222512/cron-info-no-mta-installed-discarding-output-error-in-the-syslog">see errors</a></li>
+<li>use <code>MAILTO=""</code> and <code>&gt; /dev/null</code> to <a href="https://unix.stackexchange.com/questions/100722/how-do-i-completely-silence-a-cronjob-to-dev-null">silence errors</a></li>
 </ol>
 
 <h1>curl</h1>

@@ -38,7 +38,9 @@ if ($argv[1]) {
 }
 
 $parent_dir = '';
-if (preg_match('#^(.*/)#',$note,$matches))
+
+# match any parent dir except './'
+if (preg_match('#^([^.]*/)#',$note,$matches))
 	$parent_dir = $matches[1];
 
 
