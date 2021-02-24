@@ -1,7 +1,5 @@
 # Wiki
 
-- title's say "." instead of being blank, on public html.
-
 - underscores for page names should work, so "row_id" should be a page
 
 - would be nice to have | aliases for pages linked to
