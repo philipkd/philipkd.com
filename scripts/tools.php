@@ -6,11 +6,11 @@ function reldir() {
 	return $dir;
 }
 
-print reldir();
-print "\n";
-print getcwd();
-print "\n";
-print __DIR__;
-print "\n";
+// print reldir();
+// print "\n";
+// print getcwd();
+// print "\n";
+// print __DIR__;
+// print "\n";
 
 ?>

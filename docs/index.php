@@ -30,112 +30,56 @@
 
 <div id="resume">
 
+<?php
 
+	include_once "markdown.php";
+	include_once "csvimporter.php";
 
+	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/Database";
+	function MyMarkDown($text) {
+		$text = Markdown($text);
+		$text = preg_replace('#</{0,1}p/{0,1}>#','',$text);
+		return $text;
+	}
 
-	<a href="https://titanseal.com/">Titan Seal</a> — the only blockchain company that has U.S. government agencies as paying customers. I founded the company and authored its patent (pending), which is the first practical solution to the recursive document hash problem.
+?>
 
-	<p/>
+<?
 
+$importer = new CsvImporter(dirname(__FILE__) . "/../content/CV/index.csv",true, ",");
+$data = $importer->get();
 
-	<a href="https://landemic.io/">Landemic</a> — a unique blockchain token, similar to CryptoKitties, but based on land acquisition. It became an overnight success, and I subsequently sold it to a private investor.
+$cur_cat = "Top";
 
-	<p/>
+foreach ($data as $row) {
+?>
 
-
-	<a href="http://www.amazon.com/gp/product/1500392243/?tag=dhbany-20">Dear Hannah</a> — a cautionary tale about self-improvement. Listen to my keynote at <a href="https://vimeo.com/41340984">Hallmark's Trends Week</a> (2012) or read <a href="https://medium.com/dear-hannah">excerpts of the book on Medium</a>
-
-	<p/>
-
+<?
+	if ($cur_cat != $row['cat']) {
+		if ($cur_cat == 'Top') {
+?>
 
 <p/>
 
   Send emails to <script>document.write('<'+'a'+' '+'h'+'r'+'e'+'f'+'='+"'"+'&'+'#'+'1'+'0'+'9'+';'+'&'+'#'+'9'+'7'+';'+'i'+'l'+'t'+'o'+'&'+'#'+'5'+'8'+';'+'m'+'e'+'&'+'#'+'6'+'4'+';'+'p'+'&'+'#'+'1'+'0'+'4'+';'+'&'+'#'+'1'+'0'+'5'+';'+'l'+'%'+'6'+'9'+'p'+'k'+'&'+'#'+'1'+'0'+'0'+';'+'&'+'#'+'4'+'6'+';'+'c'+'%'+'&'+'#'+'5'+'4'+';'+'F'+'&'+'#'+'1'+'0'+'9'+';'+"'"+'>'+'m'+'&'+'#'+'1'+'0'+'1'+';'+'&'+'#'+'6'+'4'+';'+'p'+'h'+'&'+'#'+'1'+'0'+'5'+';'+'&'+'#'+'1'+'0'+'8'+';'+'i'+'p'+'k'+'&'+'#'+'1'+'0'+'0'+';'+'&'+'#'+'4'+'6'+';'+'c'+'o'+'&'+'#'+'1'+'0'+'9'+';'+'<'+'/'+'a'+'>');</script><noscript>[Turn on JavaScript to see the email address]</noscript>. View my <a href="https://www.linkedin.com/in/philipkd">LinkedIn</a>. Based in Los Angeles.
 
-</ul><h1>Books</h1><ul>
-<li>
-	<a href="https://www.amazon.com/gp/product/B008EXUW94/?tag=philosophistr-20">Character & Chemistry</a> — A simple formula for evaluating potential partners
+<?
+		}
 
-	</li>
+		echo "</ul><h1>" . $row['cat'] . "</h1><ul>\n";
+	}
 
-<li>
-	<a href="https://www.amazon.com/gp/product/B002DEMFKO/?tag=philosophistr-20">The Perfect Thread</a> — “How One Question Tapped into the Soul of MetaFilter”
+	$cur_cat = $row['cat'];
 
-	</li>
+	if ($cur_cat != 'Top')
+		echo "<li>";
+?>
 
-</ul><h1>Apps</h1><ul>
-<li>
-	<a href="https://www.macsparky.com/blog/2010/12/16/nebulous-notes-superior-ios-text-editor.html">Permanote</a> — text editor used by writers for <em>The New Yorker</em> and <em>BBC</em>
+	<a href="<?= $row['url'] ?>"><?= $row['title'] ?></a><?= ($row['desc'] != "") ? " — " : "" ?><?= MyMarkdown($row['desc']) ?>
 
-	</li>
+	<?= ($cur_cat == 'Top') ? "<p/>" : "</li>" ?>
 
-<li>
-	<a href="https://itunes.apple.com/us/app/creative-whack-pack/id307306326?mt=8&uo=4&at=10l74L">Creative Whack Pack</a> — featured twice by Apple; collaboration with <a href="https://en.wikipedia.org/wiki/Roger_von_Oech">Roger von Oech</a>
-
-	</li>
-
-<li>
-	<a href="static/tarot-pro.jpg">Tarot</a> — one of the first apps on launch day of the iOS App Store
-
-	</li>
-
-<li>
-	<a href="http://www.youtube.com/watch?v=5aMaqpWoqmQ">Rave Light</a>
-
-	</li>
-
-</ul><h1>Essays</h1><ul>
-<li>
-	<a href="https://medium.com/dear-hannah/8-changes-to-my-life-after-just-4-weeks-of-meditation-535bbab183d5">8 Changes to My Life After Just 4 Weeks of Meditation</a>
-
-	</li>
-
-<li>
-	<a href="https://medium.com/philosophistry/the-quiet-rise-of-the-conversational-essay-7ad93b25ab61?sk=127ccb40b291614fc7612fbf2a43bc29">The Quiet Rise of the Conversational Essay</a>
-
-	</li>
-
-<li>
-	<a href="https://medium.com/philosophistry/wobbly-tables-and-the-problem-with-futurism-934468d2308?source=friends_link&sk=12665e051491c60e9395c407ca28a23e">The Banality of Futurism</a> — shout-out from <a href="https://twitter.com/kottke/status/750698349762744320">Jason Kottke</a>
-
-	</li>
-
-<li>
-	<a href="https://medium.com/@philipkd/amazons-second-act-5a13410c053a?source=friends_link&sk=8821ed452e8f21ce36dd804ec037871a">Amazon's Second Act</a> — featured by Medium's editors
-
-	</li>
-
-<li>
-	<a href="https://medium.com/@philipkd/how-i-finally-reined-in-my-spending-a1255a6f2736">How I Finally Reined in My Spending</a> — shout-out from <a href="https://en.wikipedia.org/wiki/Ramit_Sethi">Ramit Sethi</a>
-
-	</li>
-
-</ul><h1>Web Specials</h1><ul>
-<li>
-	<a href="http://realorfake3d.com/">RealOrFake3D</a> — reference site used by movie critics
-
-	</li>
-
-<li>
-	<a href="static/prisonchart.jpg">Prison population graph</a> — viral infographic
-
-	</li>
-
-</ul><h1>Design</h1><ul>
-<li>
-	<a href="https://vimeo.com/520429663">EgyptWorld</a> — Adobe's 1998 Design Award winner
-
-	</li>
-
-<li>
-	<a href="http://ludumdare.com/compo/ludum-dare-24/?action=preview&uid=14735">Darwinphony</a> — bronze medalist in Ludum Dare 2012
-
-	</li>
-
-<li>
-	<a href="/paintings/pages/017%20-%20Primary%20Colors%20(20x24).html">Primary Colors</a> — abstract acrylic painting used for the cover of a magazine
-
-	</li>
+<? } ?>
 
 </ul>
 
