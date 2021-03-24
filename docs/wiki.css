@@ -47,7 +47,9 @@ hr {
 }
 
 hr:before {
-	content: "\2666\00a0\00a0\00a0\00a0\00a0\2666\00a0\00a0\00a0\00a0\00a0\2666";
+	content: "\00b7\00a0\00a0\00a0\00b7\00a0\00a0\00a0\00b7";
+	color: grey;
+	font-size: 40px;
 }
 
 blockquote {
