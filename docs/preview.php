@@ -2,7 +2,15 @@
 
 <?
 
-	include_once "markdown.php";
+	require_once '../libs/php-markdown-lib/Michelf/MarkdownExtra.inc.php';
+	use Michelf\MarkdownExtra;
+
+//	include_once "markdown.php";
+	
+	function Markdown($text) {
+		return MarkdownExtra::defaultTransform($text);
+	}
+
 
 	$GLOBALS['slug_to_note'] = array();
 	$GLOBALS['note_to_contents'] = array();
