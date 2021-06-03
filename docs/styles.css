@@ -34,6 +34,7 @@ ul {
 	padding-left: 0px;
 	list-style-type: none;
 	margin-bottom: 30px;
+	margin-top: 8px;
 }
 
 li {
@@ -46,6 +47,8 @@ body {
 h1 {
 	font-size: 24px;
 	margin-top: 30px;
+	margin-bottom: 12px;
+	font-weight: 500;
 }
 
 a {
@@ -61,11 +64,6 @@ a:link {
 
 
 @media only screen and (max-width: 680px) {
-
-	body,
-	h1 {
-		font-size: 24px;
-	}
 
 	#main {
 		width: 100%;
