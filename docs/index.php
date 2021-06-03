@@ -75,7 +75,7 @@ foreach ($data as $row) {
 		echo "<li>";
 ?>
 
-	<a href="<?= $row['url'] ?>"><?= $row['title'] ?></a><?= ($row['desc'] != "") ? " — " : "" ?><?= MyMarkdown($row['desc']) ?>
+	<a href="<?= $row['url'] ?>"><?= $row['title'] ?></a><?= ($row['desc'] != "") ? ": " : "" ?><?= MyMarkdown($row['desc']) ?>
 
 	<?= ($cur_cat == 'Top') ? "<p/>" : "</li>" ?>
 
