@@ -2,7 +2,15 @@
 
 <?
 
-	include_once "markdown.php";
+	require_once '../libs/php-markdown-lib/Michelf/MarkdownExtra.inc.php';
+	use Michelf\MarkdownExtra;
+
+//	include_once "markdown.php";
+	
+	function Markdown($text) {
+		return MarkdownExtra::defaultTransform($text);
+	}
+
 
 	$GLOBALS['slug_to_note'] = array();
 	$GLOBALS['note_to_contents'] = array();
@@ -58,6 +66,7 @@
 
 <link rel="shortcut icon" href="/favicon.ico" >
 <link rel="stylesheet" href="<?= $GLOBALS['stylesheet'] ?>" type="text/css" />
+<link rel="stylesheet" href="../preview.css" type="text/css" />
 <link href="https://g1.nyt.com/fonts/css/web-fonts.5810def60210a2fa7d0848f37e3fa048bb6147b1.css" rel="stylesheet" type="text/css">
 </head>
 
