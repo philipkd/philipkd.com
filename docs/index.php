@@ -6,7 +6,7 @@
 <title>Philip Dhingra</title>
 
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="stylesheet" href="styles.css?refresh=192834">
+<link rel="stylesheet" href="/css/styles.css">
 
 <script type="text/javascript">
 

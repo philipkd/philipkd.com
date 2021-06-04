@@ -5,14 +5,19 @@ use ScssPhp\ScssPhp\Compiler;
 
 $compiler = new Compiler();
 
-$contents = file_get_contents(dirname(__FILE__) . '/../docs/css/test.scss');
+if ($argv[1]) {
+  $css = $argv[1];
+} elseif ($_GET['file']) {
+  $css = $_GET['file'];
+} else {
+  $css = '';
+}
 
+$css = preg_replace('/\.css/', '.scss', $css);
 
-// echo $compiler->compileString('
-//   $color: #abc;
-//   div { color: lighten($color, 20%); }
-// ')->getCss();
+$contents = file_get_contents(dirname(__FILE__) . '/../docs/css/' . $css);
 
+header('Content-Type: text/css');
 echo $compiler->compileString($contents)->getCss();
 
 ?>
