@@ -28,6 +28,22 @@
 
 <h1>Philip Dhingra</h1>
 
+<div id='contact'>
+
+<?php
+
+function get_svg($path, $id) {
+	$svg = file_get_contents(dirname(__FILE__) . '/icons_/' . $path);
+	$svg = preg_replace('/fill:rgb\(74,74,77\);/','',$svg);
+	$svg = preg_replace('/<svg/','<svg id=' . $id . ' ',$svg);
+	return $svg;
+}
+
+?>
+
+
+<?= get_svg('sf.svg','sf') ?>	San Francisco, CA <?= get_svg('dot.svg','dot') ?> <script>document.write('<'+'a'+' '+'h'+'r'+'e'+'f'+'='+"'"+'&'+'#'+'1'+'0'+'9'+';'+'&'+'#'+'9'+'7'+';'+'i'+'l'+'t'+'o'+'&'+'#'+'5'+'8'+';'+'m'+'e'+'&'+'#'+'6'+'4'+';'+'p'+'&'+'#'+'1'+'0'+'4'+';'+'&'+'#'+'1'+'0'+'5'+';'+'l'+'%'+'6'+'9'+'p'+'k'+'&'+'#'+'1'+'0'+'0'+';'+'&'+'#'+'4'+'6'+';'+'c'+'%'+'&'+'#'+'5'+'4'+';'+'F'+'&'+'#'+'1'+'0'+'9'+';'+"'"+'>')</script><?= get_svg('email.svg','email') ?> Email</a><noscript>[Turn on JavaScript to see the email address]</noscript> <a href="https://www.linkedin.com/in/philipkd"><?= get_svg('linkedin.svg','linkedin') ?> LinkedIn</a></div>
+
 <div id="resume">
 
 <?php
@@ -60,8 +76,6 @@ foreach ($data as $row) {
 ?>
 
 <p/>
-
-  Send emails to <script>document.write('<'+'a'+' '+'h'+'r'+'e'+'f'+'='+"'"+'&'+'#'+'1'+'0'+'9'+';'+'&'+'#'+'9'+'7'+';'+'i'+'l'+'t'+'o'+'&'+'#'+'5'+'8'+';'+'m'+'e'+'&'+'#'+'6'+'4'+';'+'p'+'&'+'#'+'1'+'0'+'4'+';'+'&'+'#'+'1'+'0'+'5'+';'+'l'+'%'+'6'+'9'+'p'+'k'+'&'+'#'+'1'+'0'+'0'+';'+'&'+'#'+'4'+'6'+';'+'c'+'%'+'&'+'#'+'5'+'4'+';'+'F'+'&'+'#'+'1'+'0'+'9'+';'+"'"+'>'+'m'+'&'+'#'+'1'+'0'+'1'+';'+'&'+'#'+'6'+'4'+';'+'p'+'h'+'&'+'#'+'1'+'0'+'5'+';'+'&'+'#'+'1'+'0'+'8'+';'+'i'+'p'+'k'+'&'+'#'+'1'+'0'+'0'+';'+'&'+'#'+'4'+'6'+';'+'c'+'o'+'&'+'#'+'1'+'0'+'9'+';'+'<'+'/'+'a'+'>');</script><noscript>[Turn on JavaScript to see the email address]</noscript>. View my <a href="https://www.linkedin.com/in/philipkd">LinkedIn</a>. Based in Los Angeles.
 
 <?
 		}
