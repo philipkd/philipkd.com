@@ -24,9 +24,9 @@
 
 <div id="main">
 
-<img id="title" src="/phil_title.svg" alt="Philip Dhingra">
-
 <img id="cover" src="face10.png" alt="Phil unveiling Dear Hannah">
+
+<h1>Philip Dhingra</h1>
 
 <div id="resume">
 
@@ -66,7 +66,7 @@ foreach ($data as $row) {
 <?
 		}
 
-		echo "</ul><h1>" . $row['cat'] . "</h1><ul>\n";
+		echo "</ul><h2>" . $row['cat'] . "</h2><ul>\n";
 	}
 
 	$cur_cat = $row['cat'];
