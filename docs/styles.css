@@ -30,6 +30,21 @@ img#title {
 	margin: 20px 0 40px;
 }
 
+
+#contact {
+	text-align: center;
+}
+
+#contact a {
+	border: none;
+	color: black;
+}
+
+#contact img {
+	width: 20px;
+	height: 20px;
+}
+
 ul {
 	padding-left: 0px;
 	list-style-type: none;
