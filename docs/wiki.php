@@ -1,5 +1,8 @@
 <?php
 
+require '../vendor/autoload.php';
+use Michelf\Markdown;
+
 function slug($str) {
 	return preg_replace('/ /','_',$str);
 }
@@ -10,7 +13,6 @@ function unslug($str) {
 
 function MyMarkdown2($contents) {
 
-	include_once "markdown.php";
 
 	preg_match_all('/\[\[(.*?)\]\]/',$contents,$links, PREG_SET_ORDER);	
 
@@ -24,7 +26,7 @@ function MyMarkdown2($contents) {
 		$contents = preg_replace("#\($link\)#","($newlink)",$contents);
 	}
 
-	return Markdown($contents);
+	return Markdown::defaultTransform($contents);
 }
 
 if ($argv[1]) {

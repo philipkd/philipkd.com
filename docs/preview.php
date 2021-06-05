@@ -2,10 +2,8 @@
 
 <?
 
-	require_once '../libs/php-markdown-lib/Michelf/MarkdownExtra.inc.php';
+	require '../vendor/autoload.php';
 	use Michelf\MarkdownExtra;
-
-//	include_once "markdown.php";
 	
 	function Markdown($text) {
 		return MarkdownExtra::defaultTransform($text);
