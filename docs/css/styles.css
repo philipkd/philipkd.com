@@ -15,6 +15,50 @@ img {
   text-align: left;
   line-height: 150%;
 }
+#contact {
+  color: #535357;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+#contact svg {
+  fill: #535357;
+  margin-left: 9px;
+  margin-right: 2px;
+}
+#contact svg#email {
+  height: 13px;
+  width: 19px;
+}
+#contact svg#linkedin {
+  height: 18px;
+  width: 18px;
+  vertical-align: -2px;
+}
+#contact svg#dot {
+  height: 5px;
+  width: 5px;
+  vertical-align: 4px;
+}
+#contact svg#sf {
+  height: 14px;
+  width: 25px;
+}
+#contact img {
+  fill: red;
+  margin-left: 9px;
+}
+#contact img#email {
+  height: 13px;
+}
+#contact img#linkedin {
+  height: 18px;
+  vertical-align: -2px;
+}
+#contact a {
+  color: #535357;
+  border-bottom: 0;
+}
 img#cover {
   width: 100%;
 }
@@ -43,7 +87,7 @@ h1 {
   font-size: 45px;
   text-align: center;
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 h2 {
   font-size: 24px;

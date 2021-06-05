@@ -42,7 +42,7 @@ function get_svg($path, $id) {
 ?>
 
 
-San Francisco, CA <?= get_svg('dot.svg','dot') ?> <script>document.write('<'+'a'+' '+'h'+'r'+'e'+'f'+'='+"'"+'&'+'#'+'1'+'0'+'9'+';'+'&'+'#'+'9'+'7'+';'+'i'+'l'+'t'+'o'+'&'+'#'+'5'+'8'+';'+'m'+'e'+'&'+'#'+'6'+'4'+';'+'p'+'&'+'#'+'1'+'0'+'4'+';'+'&'+'#'+'1'+'0'+'5'+';'+'l'+'%'+'6'+'9'+'p'+'k'+'&'+'#'+'1'+'0'+'0'+';'+'&'+'#'+'4'+'6'+';'+'c'+'%'+'&'+'#'+'5'+'4'+';'+'F'+'&'+'#'+'1'+'0'+'9'+';'+"'"+'>')</script><?= get_svg('email.svg','email') ?> Email</a><noscript>[Turn on JavaScript to see the email address]</noscript> <a href="https://www.linkedin.com/in/philipkd"><?= get_svg('linkedin.svg','linkedin') ?> LinkedIn</a></div>
+San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'h'+'r'+'e'+'f'+'='+"'"+'&'+'#'+'1'+'0'+'9'+';'+'&'+'#'+'9'+'7'+';'+'i'+'l'+'t'+'o'+'&'+'#'+'5'+'8'+';'+'m'+'e'+'&'+'#'+'6'+'4'+';'+'p'+'&'+'#'+'1'+'0'+'4'+';'+'&'+'#'+'1'+'0'+'5'+';'+'l'+'%'+'6'+'9'+'p'+'k'+'&'+'#'+'1'+'0'+'0'+';'+'&'+'#'+'4'+'6'+';'+'c'+'%'+'&'+'#'+'5'+'4'+';'+'F'+'&'+'#'+'1'+'0'+'9'+';'+"'"+'>')</script><?= get_svg('email.svg','email') ?> Email</a><noscript>[Turn on JavaScript to see the email address]</noscript> <a href="https://www.linkedin.com/in/philipkd"><?= get_svg('linkedin.svg','linkedin') ?> LinkedIn</a></div>
 
 <div id="resume">
 
@@ -100,23 +100,32 @@ foreach ($data as $row) {
 
 <!-- 
 
+Shout-out from [Jason Kottke](https://twitter.com/kottke/status/750698349762744320)
 
-REMOVED LINKS
+Shout-out from [Ramit Sethi](https://en.wikipedia.org/wiki/Ramit_Sethi)
 
-<a href="http://philosophistry.com/specials/syriana/">Tangled Web of <i>Syriana</i></a><a href="http://philosophistry.com/specials/100-people.html">100 People Who Are Screwing America</a>
-<li><a href="https://vimeo.com/105699696">Book Launch</a> for <i>Dear Hannah</i> 
-<li><a href="https://medium.com/philosophistry/wobbly-tables-and-the-problem-with-futurism-934468d2308">Wobbly Tables and the Problem with Futurism</a> (featured by Jason Kottke)</li>
-<li><a href="https://medium.com/@philipkd/how-i-finally-reined-in-my-spending-a1255a6f2736#.x9jd99k7b">How I Finally Reined in My Spending</a> (featured by Ramit Sethi)</li>
+Why does French sound the way it does
+https://medium.com/philosophistry/why-does-french-sound-the-way-it-does-f957c9f08a3d?source=friends_link&sk=e9546c87e0feef4fc7f28a3784d476af
+
+
+<a href="http://philosophistry.com/specials/syriana/">Tangled Web of <i>Syriana</i></a>
+
+<a href="http://philosophistry.com/specials/100-people.html">100 People Who Are Screwing America</a>
+
 <li><a href="https://medium.com/@philipkd/how-i-published-my-book-on-medium-397b007dda85#.3tml02k21">What It's Like Publishing My Entire Book on Medium</a> (Medium cover story)</li>
+
 <li><a href="http://philosophistry.com/archives/2011/02/dna-test-23andme-review.html">What's it like getting DNA test results</a> (front page of Hacker News)</li>
+
 <li><a href="https://philosophistry.com/archives/2009/05/this-is-going-into-my-best-ever-box-of-forum-threa.html">Our soon-to-be outdated beliefs</a> (featured by Jason Kottke)
+
 <li><a href="https://medium.com/@philipkd/why-i-skip-stack-overflow-c012fadb6e65">Why I Skip Stack Overflow</a> (front page of Hacker News)</li>
-<li><a href="http://www.youtube.com/watch?v=5aMaqpWoqmQ">Rave Light</a>
-<li><a href="https://www.amazon.com/gp/product/B06XBX9KBF/?tag=philosophistr-20">Philosophistry: The Love of Rhetoric</a>
-<li><a href="https://www.amazon.com/gp/product/B002DEMFKO/?tag=philosophistr-20">The Perfect Thread: How One Question Tapped into the Soul of MetaFilter</a>
+
 <li>William Shatner's <i>Weird or What?</i> episode on <a href="http://vimeo.com/philosophistry/brayroadbeast">The Bray Road Beast</a> (2012)
+
 <li>Short film "<a href="http://www.youtube.com/watch?v=VqYOQL8Qq2k">#Zombies: Followers of the Dead</a>" (2011)
+
 <li>What is <a href="http://philosophistry.com/perfectalbum/">The Perfect Album, according to Plastic</a>, a web community
+
 <li>First-round pick in <a href="http://philosophistry.com/archives/scans/2006/04/slashdot01.jpg">Slashdot's re-design Contest</a>
 
 -->
