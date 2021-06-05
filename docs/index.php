@@ -48,12 +48,14 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 
 <?php
 
-	include_once "markdown.php";
+	require dirname(__FILE__) . '/../vendor/autoload.php';
+	use Michelf\Markdown;
+	
 	include_once "csvimporter.php";
 
 	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/Database";
 	function MyMarkDown($text) {
-		$text = Markdown($text);
+		$text = Markdown::defaultTransform($text);
 		$text = preg_replace('#</{0,1}p/{0,1}>#','',$text);
 		return $text;
 	}
