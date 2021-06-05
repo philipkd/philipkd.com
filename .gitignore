@@ -1,3 +1,5 @@
 .DS_Store
 preview
 local-media
+/vendor/
+composer.phar
