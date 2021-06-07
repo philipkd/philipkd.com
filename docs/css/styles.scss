@@ -22,15 +22,21 @@ img { border: 0px }
     width: 275px;
     padding-left: 10px;
     // border: 1px solid black;
-    text-align: right;
+    text-align: center;
     font-size: 16px;
+    line-height: 0;
     a {
         border-bottom: 0;
+    }
+    p {
+        margin-top: 20px;
+        // padding-top: ;
     }
     img {
         border-radius: 10px;
         width: 100%;
     }
+
 }
 
 #contact {
