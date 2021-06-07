@@ -3,7 +3,8 @@
 # ini_set('error_reporting', E_ALL);
 # ini_set('display_errors', 1);
 
-	include_once "markdown.php";
+	require '../vendor/autoload.php';
+	use Michelf\Markdown;
 	
 	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/Database";
 
@@ -263,8 +264,6 @@ EOT;
 
 	function wiki_markdown($contents) {
 
-		include_once "markdown.php";
-
 		$contents = str_replace("#","####",$contents);
 
 		preg_match_all('/\[\[(.*?)\]\]/',$contents,$links, PREG_SET_ORDER);	
@@ -378,7 +377,7 @@ EOT;
 	}
 
 	function MyMarkDown($text) {
-		$text = Markdown($text);
+		$text = Markdown::defaultTransform($text);
 		// $text = preg_replace('/<blockquote>\s*?<p>/','<blockquote>',$text);
 		// $text = preg_replace('/<\/p>\s*?<\/blockquote>/','</blockquote>',$text);
 		return $text;
