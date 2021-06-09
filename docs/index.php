@@ -33,7 +33,7 @@
 <?php
 
 function get_svg($path, $id) {
-	$svg = file_get_contents(dirname(__FILE__) . '/icons_/' . $path);
+	$svg = file_get_contents(dirname(__FILE__) . '/icons/' . $path);
 	$svg = preg_replace('/fill:rgb\(74,74,77\);/','',$svg);
 	$svg = preg_replace('/<svg/','<svg id=' . $id . ' ',$svg);
 	return $svg;
