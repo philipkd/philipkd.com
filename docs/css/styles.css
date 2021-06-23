@@ -13,7 +13,24 @@ img {
   width: 640px;
   margin: 80px auto;
   text-align: left;
-  line-height: 150%;
+}
+.thumb {
+  float: right;
+  display: inline;
+  width: 275px;
+  padding-left: 10px;
+  text-align: center;
+  font-size: 16px;
+}
+.thumb a {
+  border-bottom: 0;
+}
+.thumb p {
+  margin-top: 7px;
+}
+.thumb img {
+  border-radius: 10px;
+  width: 100%;
 }
 #contact {
   color: #535357;
@@ -86,8 +103,9 @@ h1 {
   font-weight: 200;
   font-size: 45px;
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: 'Helvetica Neue', 'Roboto';
 }
 h2 {
   font-size: 24px;
@@ -104,6 +122,9 @@ a:visited {
 }
 a:link {
   color: #23629f;
+}
+#resume {
+  line-height: 1.4;
 }
 @media only screen and (max-width: 680px) {
   #main {
