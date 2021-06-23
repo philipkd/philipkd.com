@@ -6,6 +6,11 @@
 <title>Philip Dhingra</title>
 
 <link rel="shortcut icon" href="favicon.ico">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+</style>
+
 <link rel="stylesheet" href="/css/styles.css">
 
 <script type="text/javascript">
