@@ -95,16 +95,20 @@ foreach ($bullets as $row) {
 	if ($cur_cat != $row['cat']) {
 		$cur_cat = $row['cat'];
 
-		if ($cur_cat == 'Top') {
-			echo '<ul>';
-		} else {
-			echo '<h2>' . $cur_cat . "</h2><ul>\n";
+		if ($cur_cat != 'Top') {
+			echo '</ul>';
 		}
 
 		if ($THUMBS[$cur_cat]) {	
 			$thumb = $THUMBS[$cur_cat];
 			show_thumb($thumb);
 
+		}
+
+		if ($cur_cat == 'Top') {
+			echo '<ul>';
+		} else {
+			echo '<h2>' . $cur_cat . '</h2><ul>';
 		}
 
 	}
