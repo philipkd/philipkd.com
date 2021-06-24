@@ -23,7 +23,8 @@ img { border: 0px }
     font-size: 16px;
     background-color: #eee;
     padding: 0 0 10px;
-    border-radius: 0 0 10px 10px;
+    border-radius: 10px;
+    overflow: hidden;
     a {
         border-bottom: 0;
     }
@@ -31,7 +32,7 @@ img { border: 0px }
         width: 275px;
     }
     p {
-        margin: 7px;
+        margin: 5px;
     }
 
 }
