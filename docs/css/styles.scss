@@ -21,19 +21,17 @@ img { border: 0px }
     // border: 1px solid black;
     text-align: center;
     font-size: 16px;
-    div {
-        background-color: #eee;
-        padding: 3px 10px;
-        border-radius: 0 0 7px 7px;
-        position: relative;
-        top: -20px;
-    }
+    background-color: #eee;
+    padding: 0 0 10px;
+    border-radius: 0 0 10px 10px;
     a {
         border-bottom: 0;
     }
     img {
-        border-radius: 10px;
         width: 275px;
+    }
+    p {
+        margin: 7px;
     }
 
 }
