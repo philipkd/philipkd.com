@@ -65,16 +65,24 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 		return $text;
 	}
 
+	$importer = new CsvImporter(dirname(__FILE__) . "/../content/CV/thumbs.csv",true, ",");
+	$thumbs_data = $importer->get();
+	$THUMBS = array();
+	foreach ($thumbs_data as $row) {
+		$THUMBS[$row['loc']] = $row;
+	}
+
 ?>
 
 <?
 
 $importer = new CsvImporter(dirname(__FILE__) . "/../content/CV/index.csv",true, ",");
-$data = $importer->get();
+$bullets = $importer->get();
+
 
 $cur_cat = "Top";
 
-foreach ($data as $row) {
+foreach ($bullets as $row) {
 ?>
 
 <?
@@ -87,7 +95,23 @@ foreach ($data as $row) {
 <?
 		}
 
-		echo "</ul><h2>" . $row['cat'] . "</h2><ul>\n";
+		echo '</ul>';
+
+		if ($THUMBS[$row['cat']]) {	
+			$thumb = $THUMBS[$row['cat']];
+
+?>
+
+	<div class='thumb'>
+		<a href="<?= $thumb['url'] ?>"><img src='./thumbs/<?= $thumb['name'] ?>.png' /></a>
+		<p><?= MyMarkdown($thumb['body']) ?></p>
+	</div>
+
+<?
+
+		}
+
+		echo '<h2>' . $row['cat'] . "</h2><ul>\n";
 	}
 
 	$cur_cat = $row['cat'];
