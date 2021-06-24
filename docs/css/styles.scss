@@ -15,6 +15,29 @@ img { border: 0px }
     text-align: left;
 }
 
+.thumb-mobile {
+    width: 275px;
+    margin: 20px auto 20px;
+    // border: 1px solid black;
+    text-align: center;
+    font-size: 16px;
+    div {
+        background-color: #eee;
+        padding: 3px 10px;
+        border-radius: 0 0 7px 7px;
+        position: relative;
+        top: -20px;
+    }
+    a {
+        border-bottom: 0;
+    }
+    img {
+        border-radius: 10px;
+        width: 275px;
+    }
+
+}
+
 .thumb {
     float: right;
     display: inline;

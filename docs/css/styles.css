@@ -14,11 +14,32 @@ img {
   margin: 80px auto;
   text-align: left;
 }
+.thumb-mobile {
+  width: 275px;
+  margin: 20px auto 20px;
+  text-align: center;
+  font-size: 16px;
+}
+.thumb-mobile div {
+  background-color: #eee;
+  padding: 3px 10px;
+  border-radius: 0 0 7px 7px;
+  position: relative;
+  top: -20px;
+}
+.thumb-mobile a {
+  border-bottom: 0;
+}
+.thumb-mobile img {
+  border-radius: 10px;
+  width: 275px;
+}
 .thumb {
   float: right;
   display: inline;
   width: 275px;
   padding-left: 10px;
+  padding-top: 7px;
   text-align: center;
   font-size: 16px;
 }
