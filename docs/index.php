@@ -72,8 +72,6 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 	foreach ($thumbs_data as $row) {
 		$THUMBS[$row['loc']] = $row;
 	}
-
-	
 	$importer = new CsvImporter(dirname(__FILE__) . "/../content/CV/index.csv",true, ",");
 	$bullets_data = $importer->get();
 	
@@ -87,20 +85,27 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 
 ?>
 
-<?php function show_thumb($thumb) { ?>
+<? function show_thumb($thumb,$mobile = false) { 
 
-	<div class='thumb'>
+	$class = 'thumb';
+	if ($mobile)
+		$class = 'thumb-mobile';
+
+	?>
+
+	<div class='<?= $class ?>'>
 		<a href="<?= $thumb['url'] ?>"><img src='./thumbs/<?= $thumb['name'] ?>.png' /></a>
 		<p><?= MyMarkdown($thumb['body']) ?></p>
 	</div>
 
-<?php } ?>
+<? } ?>
+
 
 <?
 
 foreach ($CATS as $cat => $bullets) {
 
-	if ($THUMBS[$cat]) {	
+	if ($THUMBS[$cat]) {
 		$thumb = $THUMBS[$cat];
 		show_thumb($thumb);
 	}
@@ -110,11 +115,15 @@ foreach ($CATS as $cat => $bullets) {
 
 	echo '<ul>';
 
+	$count = 0;
 	foreach ($bullets as $bullet) {
 		echo '<li><a href="' . $bullet['url'] . '">' . $bullet['title'] . '</a>';
 		if ($bullet['desc'] != '') 
 			echo ': ' . MyMarkdown($bullet['desc']);
 		echo '</li>';
+		if ($count == 0 && $THUMBS[$cat])
+			show_thumb($thumb,true);
+		$count++;
 	}
 
 	echo '</ul>';
