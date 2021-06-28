@@ -67,9 +67,22 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 
 	$importer = new CsvImporter(dirname(__FILE__) . "/../content/CV/thumbs.csv",true, ",");
 	$thumbs_data = $importer->get();
+
 	$THUMBS = array();
 	foreach ($thumbs_data as $row) {
 		$THUMBS[$row['loc']] = $row;
+	}
+
+	
+	$importer = new CsvImporter(dirname(__FILE__) . "/../content/CV/index.csv",true, ",");
+	$bullets_data = $importer->get();
+	
+	$CATS = array();
+	foreach ($bullets_data as $row) {
+		$cat = $row['cat'];
+		if (!$CATS[$cat])
+			$CATS[$cat] = array();
+		array_push($CATS[$cat], $row);
 	}
 
 ?>
@@ -85,37 +98,29 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 
 <?
 
-$importer = new CsvImporter(dirname(__FILE__) . "/../content/CV/index.csv",true, ",");
-$bullets = $importer->get();
+foreach ($CATS as $cat => $bullets) {
 
-$cur_cat = "";
-
-foreach ($bullets as $row) {
-
-	if ($cur_cat != $row['cat']) {
-		$cur_cat = $row['cat'];
-
-		if ($cur_cat != 'Top') {
-			echo '</ul>';
-		}
-
-		if ($THUMBS[$cur_cat]) {	
-			$thumb = $THUMBS[$cur_cat];
-			show_thumb($thumb);
-
-		}
-
-		if ($cur_cat == 'Top') {
-			echo '<ul>';
-		} else {
-			echo '<h2>' . $cur_cat . '</h2><ul>';
-		}
-
+	if ($THUMBS[$cat]) {	
+		$thumb = $THUMBS[$cat];
+		show_thumb($thumb);
 	}
+
+	if ($cat != 'Top')
+		echo '<h2>' . $cat . '</h2>';
+
+	echo '<ul>';
+
+	foreach ($bullets as $bullet) {
+		echo '<li><a href="' . $bullet['url'] . '">' . $bullet['title'] . '</a>';
+		if ($bullet['desc'] != '') 
+			echo ': ' . MyMarkdown($bullet['desc']);
+		echo '</li>';
+	}
+
+	echo '</ul>';
 
 ?>
 
-	<li><a href="<?= $row['url'] ?>"><?= $row['title'] ?></a><?= ($row['desc'] != "") ? ": " : "" ?><?= MyMarkdown($row['desc']) ?></li>
 
 <? } ?>
 
