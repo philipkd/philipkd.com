@@ -19,20 +19,20 @@ img {
   margin: 20px auto 20px;
   text-align: center;
   font-size: 16px;
-}
-.thumb-mobile div {
   background-color: #eee;
-  padding: 3px 10px;
-  border-radius: 0 0 7px 7px;
-  position: relative;
-  top: -20px;
+  padding: 0 0 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: none;
 }
 .thumb-mobile a {
   border-bottom: 0;
 }
 .thumb-mobile img {
-  border-radius: 10px;
   width: 275px;
+}
+.thumb-mobile p {
+  margin: 5px;
 }
 .thumb {
   float: right;
@@ -161,6 +161,12 @@ a:link {
     box-sizing: border-box;
     height: auto;
     margin-bottom: 25px;
+  }
+  .thumb-mobile {
+    display: block;
+  }
+  .thumb {
+    display: none;
   }
 }
 @media only screen and (max-width: 480px) {
