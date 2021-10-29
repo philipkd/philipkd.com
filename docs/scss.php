@@ -5,7 +5,8 @@ use ScssPhp\ScssPhp\Compiler;
 
 $compiler = new Compiler();
 
-if ($argv[1]) {
+if (isset($argv)) {
+// if ($argv[1]) {
   $css = $argv[1];
 } elseif ($_GET['file']) {
   $css = $_GET['file'];

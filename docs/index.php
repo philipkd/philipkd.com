@@ -78,7 +78,7 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 	$CATS = array();
 	foreach ($bullets_data as $row) {
 		$cat = $row['cat'];
-		if (!$CATS[$cat])
+		if (!array_key_exists($cat,$CATS))
 			$CATS[$cat] = array();
 		array_push($CATS[$cat], $row);
 	}
@@ -105,7 +105,7 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 
 foreach ($CATS as $cat => $bullets) {
 
-	if ($THUMBS[$cat]) {
+	if (array_key_exists($cat,$THUMBS)) {
 		$thumb = $THUMBS[$cat];
 		show_thumb($thumb);
 	}
@@ -121,7 +121,7 @@ foreach ($CATS as $cat => $bullets) {
 		if ($bullet['desc'] != '') 
 			echo ': ' . MyMarkdown($bullet['desc']);
 		echo '</li>';
-		if ($count == 0 && $THUMBS[$cat])
+		if ($count == 0 && array_key_exists($cat,$THUMBS))
 			show_thumb($thumb,true);
 		$count++;
 	}

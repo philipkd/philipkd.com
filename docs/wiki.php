@@ -29,7 +29,8 @@ function MyMarkdown2($contents) {
 	return Markdown::defaultTransform($contents);
 }
 
-if ($argv[1]) {
+if (isset($argv)) {
+// if ($argv[1]) {
 	$note = $argv[1];
 } elseif ($_GET['note']) {
 	$note = unslug($_GET['note']);
