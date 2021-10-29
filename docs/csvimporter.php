@@ -14,7 +14,7 @@ class CsvImporter
         $this->parse_header = $parse_header;
         $this->delimiter = $delimiter;
         $this->length = $length;
-        $this->lines = $lines;
+        // $this->lines = $lines;
 
         if ($this->parse_header)
         {
