@@ -78,6 +78,9 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 	$CATS = array();
 	foreach ($bullets_data as $row) {
 		$cat = $row['cat'];
+		if ($cat == 'Hidden')
+			continue;
+
 		if (!array_key_exists($cat,$CATS))
 			$CATS[$cat] = array();
 		array_push($CATS[$cat], $row);
@@ -86,6 +89,8 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 ?>
 
 <? function show_thumb($thumb,$mobile = false) { 
+
+	return;
 
 	$class = 'thumb';
 	if ($mobile)
