@@ -229,6 +229,7 @@
  		$dev = $GLOBALS['tag_to_essays']["_dev"];
  		$pubd = $GLOBALS['tag_to_essays']["_pubd"];
  		$seta = $GLOBALS['tag_to_essays']["_seta"];
+		$wip = $GLOBALS['tag_to_essays']["_wip"];
 
  		// print_r($dev);
  		// print_r($pubd);
@@ -236,6 +237,8 @@
  		$nydev = array_diff($dev, $pubd);
 
  		$nydev = array_diff($nydev, $seta);
+
+ 		$nydev = array_diff($nydev, $wip);
 
  		print_essays($nydev);
 	}
