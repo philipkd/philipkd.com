@@ -227,20 +227,9 @@
 	// future for maybe custom queries
 	function print_tagset() {
  		$dev = $GLOBALS['tag_to_essays']["_dev"];
- 		$pubd = $GLOBALS['tag_to_essays']["_pubd"];
- 		$seta = $GLOBALS['tag_to_essays']["_seta"];
-		$wip = $GLOBALS['tag_to_essays']["_wip"];
+ 		$stbd = $GLOBALS['tag_to_essays']["_stbd"];
 
- 		// print_r($dev);
- 		// print_r($pubd);
-
- 		$nydev = array_diff($dev, $pubd);
-
- 		$nydev = array_diff($nydev, $seta);
-
- 		$nydev = array_diff($nydev, $wip);
-
- 		print_essays($nydev);
+ 		print_essays(array_diff($dev, $stbd));
 	}
 
 	function print_tag($tag) {
