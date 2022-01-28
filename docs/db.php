@@ -205,14 +205,48 @@
 	}
 
 
+	function print_essays($essays) {
+
+ 		usort($essays,"essay_sort");
+
+		// $i = 0;
+ 		foreach ($essays as $essay) {
+			if ($GLOBALS['local_access'] && !$GLOBALS['expand'])
+				print_title_and_tags($essay);
+			else
+				print_essay($essay);
+
+			// if($i < count($essays) - 1)
+			//  	hr_tag();
+			// $i++;
+ 		}
+		
+		print("<i>" . count($essays) . " entries</i>");
+	}
+
+	// future for maybe custom queries
+	function print_tagset() {
+ 		$dev = $GLOBALS['tag_to_essays']["_dev"];
+ 		$pubd = $GLOBALS['tag_to_essays']["_pubd"];
+ 		$seta = $GLOBALS['tag_to_essays']["_seta"];
+
+ 		// print_r($dev);
+ 		// print_r($pubd);
+
+ 		$nydev = array_diff($dev, $pubd);
+
+ 		$nydev = array_diff($nydev, $seta);
+
+ 		print_essays($nydev);
+	}
+
 	function print_tag($tag) {
+
  		$essays = $GLOBALS['tag_to_essays'][$tag];
  		
  		if(!$essays)
  			return;
  		
- 		usort($essays,"essay_sort");
-
 		$idea = ltrim($tag, "_");
 
 		if ($idea_data = $GLOBALS['index']->ideas->$idea) {
@@ -230,19 +264,8 @@
 			echo "<h3>Entries</h3>";
 		}
 
+		print_essays($essays);
 
-
-		// $i = 0;
- 		foreach ($essays as $essay) {
-			if ($GLOBALS['local_access'] && !$GLOBALS['expand'])
-				print_title_and_tags($essay);
-			else
-				print_essay($essay);
-
-			// if($i < count($essays) - 1)
-			//  	hr_tag();
-			// $i++;
- 		}
 	}
 
 	function print_about() {
@@ -293,7 +316,6 @@ EOT;
 	}
 
 	function print_title_and_tags($title) {
-		echo "<div style='display: none'>yo</div>";
 		echo "<p><b>" . ucfirst(titleify($title)) . "</b>";
 		if ($body = $GLOBALS['essays'][$title]) {
 			echo " — ";
@@ -448,8 +470,12 @@ if ($GLOBALS['expand']) {
 
 <?php
 
-	if ($GLOBALS['tag_route']) {
- 		print_tag($GLOBALS['tag_route']);
+	if ($tag_route = $GLOBALS['tag_route']) {
+		if ($tag_route == "_nydev")
+			print_tagset();
+ 		else
+ 			print_tag($GLOBALS['tag_route']);
+
  	} else {
 
 		print_nav();
