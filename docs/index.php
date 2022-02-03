@@ -65,15 +65,19 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 		return $text;
 	}
 
-	$importer = new CsvImporter(dirname(__FILE__) . "/../content/CV/thumbs.csv",true, ",");
-	$thumbs_data = $importer->get();
+	function import_csv($file) {
+		$importer = new CsvImporter(dirname(__FILE__) . "/../content/CV/$file.csv",true, ",");
+		return $importer->get();
+	}
+
+	$thumbs_data = import_csv('thumbs');
 
 	$THUMBS = array();
 	foreach ($thumbs_data as $row) {
 		$THUMBS[$row['loc']] = $row;
 	}
-	$importer = new CsvImporter(dirname(__FILE__) . "/../content/CV/index.csv",true, ",");
-	$bullets_data = $importer->get();
+	
+	$bullets_data = import_csv('index');
 	
 	$CATS = array();
 	foreach ($bullets_data as $row) {
@@ -85,6 +89,14 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 			$CATS[$cat] = array();
 		array_push($CATS[$cat], $row);
 	}
+
+	$intro_data = import_csv('intros');
+
+	$INTROS = array();
+	foreach ($intro_data as $row) {
+		$INTROS[$row['cat']] = $row['text'];
+	}
+
 
 ?>
 
@@ -117,6 +129,10 @@ foreach ($CATS as $cat => $bullets) {
 
 	if ($cat != 'Top')
 		echo '<h2>' . $cat . '</h2>';
+
+	if (array_key_exists($cat,$INTROS)) {
+		echo $INTROS[$cat];
+	}
 
 	echo '<ul>';
 
