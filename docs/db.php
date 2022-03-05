@@ -39,7 +39,7 @@
 	$GLOBALS['new_icon'] = '<img src="/images/icons/new.gif" />';
 
 	process_notes();
-	process_logs();
+	// process_logs();
 	process_tag_names();
 
 	if ($argv[1] == 'list') {
