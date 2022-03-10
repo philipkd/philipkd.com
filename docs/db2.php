@@ -56,7 +56,7 @@
 	    	$should_bold = $GLOBALS['tag_to_new'][$tag] && $tag != "_new";
 	    	$bold_start = $should_bold ? "<b>" : "";
 	    	$bold_end = $should_bold ? "</b>" : "";
-		    echo "$bold_start<a href=\"/db/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end <span class=\"count\">$count</span><br/>\n";
+		    echo "$bold_start<a href=\"/db2/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end <span class=\"count\">$count</span><br/>\n";
 		}
 	}
 
@@ -310,7 +310,7 @@ EOT;
 	}
 
 	function print_title_and_tags($title) {
-		echo "<p><b>" . ucfirst(titleify($title)) . "</b>";
+		echo "<p><b>" . titleify($title) . "</b>";
 		if ($body = $GLOBALS['essays'][$title]) {
 			echo " — ";
 			echo substr($body,0,144);
