@@ -329,7 +329,7 @@ EOT;
 
 	function print_essay($title) {
 
-		echo "<h4>" . ucfirst(titleify($title)) . "</h4>\n";		
+		echo "<h4>" . titleify($title) . "</h4>\n";		
 		echo "<div class=\"note-body\">";
 		echo MyMarkdown($GLOBALS['essays'][$title]);
 		echo "</div>\n\n";
