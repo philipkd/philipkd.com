@@ -6,7 +6,7 @@
 	require '../vendor/autoload.php';
 	use Michelf\Markdown;
 	
-	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/DB2";
+	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/db2";
 
 	if (preg_match("/^local./", $_SERVER['HTTP_HOST']))
 		$GLOBALS['local_access'] = true;
@@ -20,9 +20,9 @@
     if ($argv[1])
     	$GLOBALS['tag_route'] = $argv[1];
 
-	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/Files";
+	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/files";
 	$GLOBALS['logs_dir'] = $GLOBALS['content_dir'] . "/Logs";
-	$GLOBALS['tag_names_file'] = $GLOBALS['content_dir'] . "/Tags.txt";
+	$GLOBALS['tag_names_file'] = $GLOBALS['content_dir'] . "/tags.txt";
 
 	$GLOBALS['essays'] = array();
 
@@ -81,6 +81,7 @@
 		if ($GLOBALS['local_access']) {
 			echo "<b>Special Tags</b><p/>";
 		    print_nav_tags($special_tags);
+		    echo "<a href=\"/db2/_nystbd\">not-yet-initial-dev</a>";
 		    print "<p/>";
 		}		
 
@@ -439,7 +440,7 @@ EOT;
 </head>
 
 
-<div class="site-title"><a href="/db/">Notes</a> by <a href='https://philipkd.com/'>Philip Dhingra</a></div>
+<div class="site-title"><a href="/db2/">Notes</a> by <a href='https://philipkd.com/'>Philip Dhingra</a></div>
 
 <div class="entry">
 
@@ -468,7 +469,7 @@ if ($GLOBALS['expand']) {
 <?php
 
 	if ($tag_route = $GLOBALS['tag_route']) {
-		if ($tag_route == "_nydev")
+		if ($tag_route == "_nystbd")
 			print_tagset();
  		else
  			print_tag($GLOBALS['tag_route']);
