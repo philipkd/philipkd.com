@@ -15,6 +15,12 @@
 
 	$GLOBALS['note_dir'] = "./preview";
 
+	if ($_GET['folder'] && $_GET['folder'] != '') {
+		$subfolder = $_GET['folder'];
+		preg_replace('#/^#','',$subfolder);
+		$GLOBALS['note_dir'] .= '/' . $_GET['folder'];
+	}
+
 	process_notes();
 
 	$stylesheets = [
@@ -27,9 +33,7 @@
 
 	function print_note($name) {
 
-		echo "<div class=\"blogentry\"><div class=\"blogbody\">";
 		echo Markdown($GLOBALS['note_to_contents'][$name]);
-		echo "</div></div>";
 
 	}
 
@@ -81,10 +85,16 @@
 
 	sort($notes);
 
+?>
+
+	<div class="blogentry"><div class="blogbody">	
+
+<?
 	foreach ($notes as $note)
     	print_note($note);
-
 ?>
+
+	</div></div>
 
 </div>
 

@@ -16,7 +16,7 @@ RewriteRule ^css/(.*)$ /scss.php?file=$1 [L]
 # L flag means once rule executes, no more rules
 # R flag means redirect to external site
 
-RewriteRule ^preview/$ preview.php [L]
+RewriteRule ^preview/(.*)$ preview.php?folder=$1 [L]
 # RewriteRule ^preview/ ../preview/grid-squares.png [L]
 
 # Apache redirects are deprecated in favor of individual pages redirecting for GitHub pages
