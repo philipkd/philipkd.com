@@ -20,7 +20,7 @@
     if ($argv[1])
     	$GLOBALS['tag_route'] = $argv[1];
 
-	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/files";
+	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/dev";
 	$GLOBALS['logs_dir'] = $GLOBALS['content_dir'] . "/Logs";
 	$GLOBALS['tag_names_file'] = $GLOBALS['content_dir'] . "/tags.txt";
 
@@ -50,13 +50,18 @@
 	    exit;
 	}
 
-	function print_nav_tags($tags) {
+	function print_nav_tags($tags,$hide_total = false) {
 	    foreach ($tags as $tag) {
 	    	$count = count($GLOBALS['tag_to_essays'][$tag]);
 	    	$should_bold = $GLOBALS['tag_to_new'][$tag] && $tag != "_new";
 	    	$bold_start = $should_bold ? "<b>" : "";
 	    	$bold_end = $should_bold ? "</b>" : "";
-		    echo "$bold_start<a href=\"/db/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end <span class=\"count\">$count</span><br/>\n";
+		    echo "$bold_start<a href=\"/db/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end";
+		    if (!$hide_total)
+		    	echo " <span class=\"count\">$count</span>";
+
+		    echo "<br/>\n";
+		    
 		}
 	}
 
@@ -80,7 +85,7 @@
 
 		if ($GLOBALS['local_access']) {
 			echo "<b>Special Tags</b><p/>";
-		    print_nav_tags($special_tags);
+		    print_nav_tags($special_tags,true);
 		    echo "<a href=\"/db/_nystbd\">not-yet-initial-dev</a>";
 		    print "<p/>";
 		}		
@@ -263,6 +268,26 @@
 
 	}
 
+	# from https://stackoverflow.com/questions/640931/recursively-counting-files-with-php
+	function getFileCount($path) {
+	    $size = 0;
+	    $ignore = array('.','..','cgi-bin','.DS_Store','tags.txt');
+	    $files = scandir($path);
+	    foreach($files as $t) {
+	        if(in_array($t, $ignore)) continue;
+	        if (is_dir(rtrim($path, '/') . '/' . $t)) {
+	            $size += getFileCount(rtrim($path, '/') . '/' . $t);
+	        } else {
+	            $size++;
+	        }   
+	    }
+	    return $size;
+	}
+
+	function get_total() {
+		return getFileCount($GLOBALS['content_dir']);
+	}
+
 	function print_about() {
 		echo <<<EOT
 		
@@ -403,7 +428,6 @@ EOT;
 		return $text;
 	}
 
-
 ?>
 
 <?
@@ -438,7 +462,6 @@ EOT;
 <title><?= $title ?><? $home ? " (Philosophistry)" : "" ?></title>
 
 </head>
-
 
 <div class="site-title"><a href="/db/">Notes</a> by <a href='https://philipkd.com/'>Philip Dhingra</a></div>
 
@@ -481,6 +504,9 @@ if ($GLOBALS['expand']) {
  	}
 
 ?>
+
+
+<!-- full total: <?= get_total() ?> -->
 
 <br clear="all"/>
 <br/>
