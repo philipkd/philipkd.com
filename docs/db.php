@@ -20,7 +20,7 @@
     if ($argv[1])
     	$GLOBALS['tag_route'] = $argv[1];
 
-	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/dev";
+	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/";
 	$GLOBALS['logs_dir'] = $GLOBALS['content_dir'] . "/Logs";
 	$GLOBALS['tag_names_file'] = $GLOBALS['content_dir'] . "/tags.txt";
 
@@ -40,7 +40,7 @@
 
 	process_notes();
 	// process_logs();
-	process_tag_names();
+	// process_tag_names();
 
 	if ($argv[1] == 'list') {
 		$tags = array_keys($GLOBALS['tag_to_essays']);
@@ -83,12 +83,12 @@
 	    		array_push($main_tags,$tag);
 	    }
 
-		if ($GLOBALS['local_access']) {
-			echo "<b>Special Tags</b><p/>";
-		    print_nav_tags($special_tags,true);
-		    echo "<a href=\"/db/_nystbd\">not-yet-initial-dev</a>";
-		    print "<p/>";
-		}		
+		// if ($GLOBALS['local_access']) {
+		// 	echo "<b>Special Tags</b><p/>";
+		//     print_nav_tags($special_tags,true);
+		//     echo "<a href=\"/db/_nystbd\">not-yet-initial-dev</a>";
+		//     print "<p/>";
+		// }		
 
 
 		echo "<b>Total</b> <span class=\"count\">";
@@ -505,8 +505,6 @@ if ($GLOBALS['expand']) {
 
 ?>
 
-
-<!-- full total: <?= get_total() ?> -->
 
 <br clear="all"/>
 <br/>
