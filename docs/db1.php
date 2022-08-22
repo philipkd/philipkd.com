@@ -6,7 +6,7 @@
 	require '../vendor/autoload.php';
 	use Michelf\Markdown;
 	
-	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/db2";
+	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/Database";
 
 	if (preg_match("/^local./", $_SERVER['HTTP_HOST']))
 		$GLOBALS['local_access'] = true;
@@ -20,9 +20,9 @@
     if ($argv[1])
     	$GLOBALS['tag_route'] = $argv[1];
 
-	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/files";
+	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/Files";
 	$GLOBALS['logs_dir'] = $GLOBALS['content_dir'] . "/Logs";
-	$GLOBALS['tag_names_file'] = $GLOBALS['content_dir'] . "/tags.txt";
+	$GLOBALS['tag_names_file'] = $GLOBALS['content_dir'] . "/Tags.txt";
 
 	$GLOBALS['essays'] = array();
 
@@ -56,7 +56,7 @@
 	    	$should_bold = $GLOBALS['tag_to_new'][$tag] && $tag != "_new";
 	    	$bold_start = $should_bold ? "<b>" : "";
 	    	$bold_end = $should_bold ? "</b>" : "";
-		    echo "$bold_start<a href=\"/db2/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end <span class=\"count\">$count</span><br/>\n";
+		    echo "$bold_start<a href=\"/db/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end <span class=\"count\">$count</span><br/>\n";
 		}
 	}
 
@@ -81,7 +81,6 @@
 		if ($GLOBALS['local_access']) {
 			echo "<b>Special Tags</b><p/>";
 		    print_nav_tags($special_tags);
-		    echo "<a href=\"/db2/_nystbd\">not-yet-initial-dev</a>";
 		    print "<p/>";
 		}		
 
@@ -227,12 +226,10 @@
 
 	// future for maybe custom queries
 	function print_tagset() {
- 		$dev = array_keys($GLOBALS['essays']);
- 		// $dev = $GLOBALS['tag_to_essays']["_dev"];
+ 		$dev = $GLOBALS['tag_to_essays']["_dev"];
  		$stbd = $GLOBALS['tag_to_essays']["_stbd"];
- 		$pi = $GLOBALS['tag_to_essays']["_pi"];
 
- 		print_essays(array_diff(array_diff($dev, $stbd),$pi));
+ 		print_essays(array_diff($dev, $stbd));
 	}
 
 	function print_tag($tag) {
@@ -311,7 +308,7 @@ EOT;
 	}
 
 	function print_title_and_tags($title) {
-		echo "<p><b>" . titleify($title) . "</b>";
+		echo "<p><b>" . ucfirst(titleify($title)) . "</b>";
 		if ($body = $GLOBALS['essays'][$title]) {
 			echo " — ";
 			echo substr($body,0,144);
@@ -330,7 +327,7 @@ EOT;
 
 	function print_essay($title) {
 
-		echo "<h4>" . titleify($title) . "</h4>\n";		
+		echo "<h4>" . ucfirst(titleify($title)) . "</h4>\n";		
 		echo "<div class=\"note-body\">";
 		echo MyMarkdown($GLOBALS['essays'][$title]);
 		echo "</div>\n\n";
@@ -371,9 +368,6 @@ EOT;
 	function get_tags($line) {
     	if (preg_match_all('/#(.*?)([\. ]|$)/',$line,$matches)) {
     		$tags = $matches[1];
-    		if (preg_match('/^- /',$line,$matches)) {
-    			array_push($tags,"_stbd");
-    		}
     		return $tags;
     	}
     	return false;
@@ -440,7 +434,7 @@ EOT;
 </head>
 
 
-<div class="site-title"><a href="/db2/">Notes</a> by <a href='https://philipkd.com/'>Philip Dhingra</a></div>
+<div class="site-title"><a href="/db/">Notes</a> by <a href='https://philipkd.com/'>Philip Dhingra</a></div>
 
 <div class="entry">
 
@@ -469,7 +463,7 @@ if ($GLOBALS['expand']) {
 <?php
 
 	if ($tag_route = $GLOBALS['tag_route']) {
-		if ($tag_route == "_nystbd")
+		if ($tag_route == "_nydev")
 			print_tagset();
  		else
  			print_tag($GLOBALS['tag_route']);
