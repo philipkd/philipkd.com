@@ -6,7 +6,7 @@
 	require '../vendor/autoload.php';
 	use Michelf\Markdown;
 	
-	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/database";
+	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/db1";
 
 	if (preg_match("/^local./", $_SERVER['HTTP_HOST']))
 		$GLOBALS['local_access'] = true;
@@ -56,7 +56,7 @@
 	    	$should_bold = $GLOBALS['tag_to_new'][$tag] && $tag != "_new";
 	    	$bold_start = $should_bold ? "<b>" : "";
 	    	$bold_end = $should_bold ? "</b>" : "";
-		    echo "$bold_start<a href=\"/db/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end";
+		    echo "$bold_start<a href=\"/db2/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end";
 		    if (!$hide_total)
 		    	echo " <span class=\"count\">$count</span>";
 
@@ -83,12 +83,12 @@
 	    		array_push($main_tags,$tag);
 	    }
 
-		// if ($GLOBALS['local_access']) {
-		// 	echo "<b>Special Tags</b><p/>";
-		//     print_nav_tags($special_tags,true);
-		//     echo "<a href=\"/db/_nystbd\">not-yet-initial-dev</a>";
-		//     print "<p/>";
-		// }		
+		if ($GLOBALS['local_access']) {
+			echo "<b>Special Tags</b><p/>";
+		    print_nav_tags($special_tags,true);
+		    // echo "<a href=\"/db2/_nystbd\">not-yet-initial-dev</a>";
+		    print "<p/>";
+		}		
 
 
 		echo "<b>Total</b> <span class=\"count\">";
