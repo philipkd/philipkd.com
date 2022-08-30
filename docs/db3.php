@@ -6,7 +6,7 @@
 	require '../vendor/autoload.php';
 	use Michelf\Markdown;
 	
-	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/db1";
+	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/sketches";
 
 	if (preg_match("/^local./", $_SERVER['HTTP_HOST']))
 		$GLOBALS['local_access'] = true;
@@ -20,9 +20,9 @@
     if ($argv[1])
     	$GLOBALS['tag_route'] = $argv[1];
 
-	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/Files";
+	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/filtered/";
 	$GLOBALS['logs_dir'] = $GLOBALS['content_dir'] . "/Logs";
-	$GLOBALS['tag_names_file'] = $GLOBALS['content_dir'] . "/Tags.txt";
+	$GLOBALS['tag_names_file'] = $GLOBALS['content_dir'] . "/tags.txt";
 
 	$GLOBALS['essays'] = array();
 
@@ -40,7 +40,7 @@
 
 	process_notes();
 	// process_logs();
-	process_tag_names();
+	// process_tag_names();
 
 	if ($argv[1] == 'list') {
 		$tags = array_keys($GLOBALS['tag_to_essays']);
@@ -50,13 +50,18 @@
 	    exit;
 	}
 
-	function print_nav_tags($tags) {
+	function print_nav_tags($tags,$hide_total = false) {
 	    foreach ($tags as $tag) {
 	    	$count = count($GLOBALS['tag_to_essays'][$tag]);
 	    	$should_bold = $GLOBALS['tag_to_new'][$tag] && $tag != "_new";
 	    	$bold_start = $should_bold ? "<b>" : "";
 	    	$bold_end = $should_bold ? "</b>" : "";
-		    echo "$bold_start<a href=\"/db/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end <span class=\"count\">$count</span><br/>\n";
+		    echo "$bold_start<a href=\"/db3/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end";
+		    if (!$hide_total)
+		    	echo " <span class=\"count\">$count</span>";
+
+		    echo "<br/>\n";
+		    
 		}
 	}
 
@@ -78,9 +83,10 @@
 	    		array_push($main_tags,$tag);
 	    }
 
-		if ($GLOBALS['local_access']) {
+		if (false && $GLOBALS['local_access']) {
 			echo "<b>Special Tags</b><p/>";
-		    print_nav_tags($special_tags);
+		    print_nav_tags($special_tags,true);
+		    // echo "<a href=\"/db/_nystbd\">not-yet-initial-dev</a>";
 		    print "<p/>";
 		}		
 
@@ -226,10 +232,12 @@
 
 	// future for maybe custom queries
 	function print_tagset() {
- 		$dev = $GLOBALS['tag_to_essays']["_dev"];
+ 		$dev = array_keys($GLOBALS['essays']);
+ 		// $dev = $GLOBALS['tag_to_essays']["_dev"];
  		$stbd = $GLOBALS['tag_to_essays']["_stbd"];
+ 		$pi = $GLOBALS['tag_to_essays']["_pi"];
 
- 		print_essays(array_diff($dev, $stbd));
+ 		print_essays(array_diff(array_diff($dev, $stbd),$pi));
 	}
 
 	function print_tag($tag) {
@@ -258,6 +266,26 @@
 
 		print_essays($essays);
 
+	}
+
+	# from https://stackoverflow.com/questions/640931/recursively-counting-files-with-php
+	function getFileCount($path) {
+	    $size = 0;
+	    $ignore = array('.','..','cgi-bin','.DS_Store','tags.txt');
+	    $files = scandir($path);
+	    foreach($files as $t) {
+	        if(in_array($t, $ignore)) continue;
+	        if (is_dir(rtrim($path, '/') . '/' . $t)) {
+	            $size += getFileCount(rtrim($path, '/') . '/' . $t);
+	        } else {
+	            $size++;
+	        }   
+	    }
+	    return $size;
+	}
+
+	function get_total() {
+		return getFileCount($GLOBALS['content_dir']);
 	}
 
 	function print_about() {
@@ -308,7 +336,7 @@ EOT;
 	}
 
 	function print_title_and_tags($title) {
-		echo "<p><b>" . ucfirst(titleify($title)) . "</b>";
+		echo "<p><b>" . titleify($title) . "</b>";
 		if ($body = $GLOBALS['essays'][$title]) {
 			echo " — ";
 			echo substr($body,0,144);
@@ -327,7 +355,7 @@ EOT;
 
 	function print_essay($title) {
 
-		echo "<h4>" . ucfirst(titleify($title)) . "</h4>\n";		
+		echo "<h4>" . titleify($title) . "</h4>\n";		
 		echo "<div class=\"note-body\">";
 		echo MyMarkdown($GLOBALS['essays'][$title]);
 		echo "</div>\n\n";
@@ -368,6 +396,9 @@ EOT;
 	function get_tags($line) {
     	if (preg_match_all('/#(.*?)([\. ]|$)/',$line,$matches)) {
     		$tags = $matches[1];
+    		if (preg_match('/^- /',$line,$matches)) {
+    			array_push($tags,"_stbd");
+    		}
     		return $tags;
     	}
     	return false;
@@ -396,7 +427,6 @@ EOT;
 		// $text = preg_replace('/<\/p>\s*?<\/blockquote>/','</blockquote>',$text);
 		return $text;
 	}
-
 
 ?>
 
@@ -433,7 +463,6 @@ EOT;
 
 </head>
 
-
 <div class="site-title"><a href="/db/">Notes</a> by <a href='https://philipkd.com/'>Philip Dhingra</a></div>
 
 <div class="entry">
@@ -463,7 +492,7 @@ if ($GLOBALS['expand']) {
 <?php
 
 	if ($tag_route = $GLOBALS['tag_route']) {
-		if ($tag_route == "_nydev")
+		if ($tag_route == "_nystbd")
 			print_tagset();
  		else
  			print_tag($GLOBALS['tag_route']);
@@ -475,6 +504,7 @@ if ($GLOBALS['expand']) {
  	}
 
 ?>
+
 
 <br clear="all"/>
 <br/>
