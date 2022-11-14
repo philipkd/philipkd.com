@@ -6,7 +6,7 @@
 	require '../vendor/autoload.php';
 	use Michelf\Markdown;
 	
-	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/database";
+	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/db2";
 
 	if (preg_match("/^local./", $_SERVER['HTTP_HOST']))
 		$GLOBALS['local_access'] = true;

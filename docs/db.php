@@ -6,7 +6,7 @@
 	require '../vendor/autoload.php';
 	use Michelf\Markdown;
 	
-	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/db1";
+	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/database";
 
 	if (preg_match("/^local./", $_SERVER['HTTP_HOST']))
 		$GLOBALS['local_access'] = true;
@@ -20,9 +20,9 @@
     if ($argv[1])
     	$GLOBALS['tag_route'] = $argv[1];
 
-	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/";
+	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/Files";
 	$GLOBALS['logs_dir'] = $GLOBALS['content_dir'] . "/Logs";
-	$GLOBALS['tag_names_file'] = $GLOBALS['content_dir'] . "/tags.txt";
+	$GLOBALS['tag_names_file'] = $GLOBALS['content_dir'] . "/Tags.txt";
 
 	$GLOBALS['essays'] = array();
 
@@ -40,7 +40,7 @@
 
 	process_notes();
 	// process_logs();
-	// process_tag_names();
+	process_tag_names();
 
 	if ($argv[1] == 'list') {
 		$tags = array_keys($GLOBALS['tag_to_essays']);
@@ -56,7 +56,7 @@
 	    	$should_bold = $GLOBALS['tag_to_new'][$tag] && $tag != "_new";
 	    	$bold_start = $should_bold ? "<b>" : "";
 	    	$bold_end = $should_bold ? "</b>" : "";
-		    echo "$bold_start<a href=\"/db2/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end";
+		    echo "$bold_start<a href=\"/db/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end";
 		    if (!$hide_total)
 		    	echo " <span class=\"count\">$count</span>";
 
