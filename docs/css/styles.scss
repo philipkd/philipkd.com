@@ -127,7 +127,17 @@ ul {
 }
 
 li {
-    margin-bottom: 8px;
+    margin-bottom: 28px;
+    .year {
+        font-weight: 200;
+        font-size: 24px;
+        font-family: 'Helvetica Neue','Roboto';
+        // font-weight: bold;
+        // color: #999;
+        display: block;
+        margin-bottom: 8px;
+        margin-right: 12px;
+    }
 }
 
 body {
@@ -135,11 +145,11 @@ body {
 }
 
 h1 {
-    font-weight: 200;
     font-size: 45px;
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
+    font-weight: 200;
     font-family: 'Helvetica Neue','Roboto'
 }
 

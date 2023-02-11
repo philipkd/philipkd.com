@@ -138,9 +138,12 @@ foreach ($CATS as $cat => $bullets) {
 
 	$count = 0;
 	foreach ($bullets as $bullet) {
-		echo '<li><a href="' . $bullet['url'] . '">' . $bullet['title'] . '</a>';
+		if ($bullet['url'] != '')
+			echo '<li><a href="' . $bullet['url'] . '">' . $bullet['title'] . '</a>';
+		else
+			echo '<li><span class="year">' . $bullet['title'] . '</span>';
 		if ($bullet['desc'] != '') 
-			echo ': ' . MyMarkdown($bullet['desc']);
+			echo MyMarkdown($bullet['desc']);
 		echo '</li>';
 		if ($count == 0 && array_key_exists($cat,$THUMBS))
 			show_thumb($thumb,true);
