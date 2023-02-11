@@ -77,7 +77,7 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 		$THUMBS[$row['loc']] = $row;
 	}
 	
-	$bullets_data = import_csv('index');
+	$bullets_data = import_csv('index-timeline');
 	
 	$CATS = array();
 	foreach ($bullets_data as $row) {
@@ -136,19 +136,26 @@ foreach ($CATS as $cat => $bullets) {
 
 	echo '<ul>';
 
-	$count = 0;
 	foreach ($bullets as $bullet) {
-		if ($bullet['url'] != '')
-			echo '<li><a href="' . $bullet['url'] . '">' . $bullet['title'] . '</a>';
-		else
-			echo '<li><span class="year">' . $bullet['title'] . '</span>';
-		if ($bullet['desc'] != '') 
-			echo MyMarkdown($bullet['desc']);
+		echo '<li><span class="year">' . $bullet['year'] . '</span>';
+		echo MyMarkdown($bullet['desc']);
 		echo '</li>';
-		if ($count == 0 && array_key_exists($cat,$THUMBS))
-			show_thumb($thumb,true);
-		$count++;
 	}
+
+
+	// $count = 0;
+	// foreach ($bullets as $bullet) {
+	// 	if ($bullet['url'] != '')
+	// 		echo '<li><a href="' . $bullet['url'] . '">' . $bullet['title'] . '</a>';
+	// 	else
+	// 		echo '<li><span class="year">' . $bullet['title'] . '</span>';
+	// 	if ($bullet['desc'] != '') 
+	// 		echo MyMarkdown($bullet['desc']);
+	// 	echo '</li>';
+	// 	if ($count == 0 && array_key_exists($cat,$THUMBS))
+	// 		show_thumb($thumb,true);
+	// 	$count++;
+	// }
 
 	echo '</ul>';
 
