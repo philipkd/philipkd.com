@@ -115,14 +115,7 @@ ul {
   margin-top: 8px;
 }
 li {
-  margin-bottom: 28px;
-}
-li .year {
-  font-weight: 200;
-  font-size: 24px;
-  font-family: 'Helvetica Neue', 'Roboto';
-  display: block;
-  margin-bottom: 8px;
+  margin-bottom: 18px;
 }
 body {
   font-size: 20px;

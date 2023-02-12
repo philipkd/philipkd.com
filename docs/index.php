@@ -122,22 +122,23 @@ San Francisco<?= get_svg('dot.svg','dot') ?><script>document.write('<'+'a'+' '+'
 
 foreach ($CATS as $cat => $bullets) {
 
-	if (array_key_exists($cat,$THUMBS)) {
-		$thumb = $THUMBS[$cat];
-		show_thumb($thumb);
-	}
+	// if (array_key_exists($cat,$THUMBS)) {
+	// 	$thumb = $THUMBS[$cat];
+	// 	show_thumb($thumb);
+	// }
 
-	if ($cat != 'Top')
-		echo '<h2>' . $cat . '</h2>';
+	// if ($cat != 'Top')
+	// 	echo '<h2>' . $cat . '</h2>';
 
-	if (array_key_exists($cat,$INTROS)) {
-		echo $INTROS[$cat];
-	}
+	// if (array_key_exists($cat,$INTROS)) {
+	// 	echo $INTROS[$cat];
+	// }
 
-	echo '<ul>';
 
 	foreach ($bullets as $bullet) {
-		echo '<li><span class="year">' . $bullet['year'] . '</span>';
+		echo '<h2>' . $bullet['year'] . '</h2>';
+		echo '<ul>';
+		echo '<li>';
 		echo MyMarkdown($bullet['desc']);
 		echo '</li>';
 	}
