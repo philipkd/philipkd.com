@@ -355,7 +355,7 @@ EOT;
 
 	function print_essay($title) {
 
-		echo "<h4>" . titleify($title) . "</h4>\n";		
+		echo "<a name='" . anchorify($title) . "' /><h4>" . titleify($title) . "</h4>\n";		
 		echo "<div class=\"note-body\">";
 		echo MyMarkdown($GLOBALS['essays'][$title]);
 		echo "</div>\n\n";
@@ -363,6 +363,7 @@ EOT;
 		$tags = $GLOBALS['essay_to_tags'][$title];
 
 		echo "<div class=\"note-tags\">";
+		echo "<a href='#" . anchorify($title) . "'>#</a>\n";
 	    foreach ($tags as $tag) {
 	    	if (special_tag($tag) && $GLOBALS['local_access'] || !special_tag($tag) || $tag == "_new")
 		    	echo "<a href='/db/$tag'>" . $tag . "</a>\n";
@@ -408,6 +409,10 @@ EOT;
 	function remove_tags($text) {
 		$text = preg_replace('/ *#.*/','',$text);
 		return $text;
+	}
+
+	function anchorify($text) {
+		return hash('crc32',$text);
 	}
 
 	function titleify($text) {
@@ -474,7 +479,7 @@ EOT;
 <?
 $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $text = ' + ';
-if (!$GLOBALS['local'])
+if (!$GLOBALS['local_access'])
 	$text = '';
 
 if ($GLOBALS['expand']) {
