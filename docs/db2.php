@@ -347,7 +347,7 @@ EOT;
 
 	    foreach ($tags as $tag) {
 	    	if (special_tag($tag) && $GLOBALS['local_access'] || !special_tag($tag) || $tag == "_new")
-		    	echo " <a href='/db/$tag'>" . $tag . "</a>\n";
+		    	echo " <a href='/db2/$tag'>" . $tag . "</a>\n";
 		}
 		echo "</p>";		
 
@@ -365,7 +365,7 @@ EOT;
 		echo "<div class=\"note-tags\">";
 	    foreach ($tags as $tag) {
 	    	if (special_tag($tag) && $GLOBALS['local_access'] || !special_tag($tag) || $tag == "_new")
-		    	echo "<a href='/db/$tag'>" . $tag . "</a>\n";
+		    	echo "<a href='/db2/$tag'>" . $tag . "</a>\n";
 		}
 		echo "</div>";
 
@@ -463,7 +463,7 @@ EOT;
 
 </head>
 
-<div class="site-title"><a href="/db/">Notes</a> by <a href='https://philipkd.com/'>Philip Dhingra</a></div>
+<div class="site-title"><a href="/db2/">Notes</a> by <a href='https://philipkd.com/'>Philip Dhingra</a></div>
 
 <div class="entry">
 
