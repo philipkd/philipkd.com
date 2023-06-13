@@ -14,7 +14,7 @@
 	if ($_GET['expand'])
 		$GLOBALS['expand'] = $_GET['expand'];
 
-
+	$GLOBALS['note_route'] = $_GET['note'];
     $GLOBALS['tag_route'] = $_GET['tag'];
 
     if ($argv[1])
@@ -355,7 +355,7 @@ EOT;
 
 	function print_essay($title) {
 
-		echo "<h4>" . titleify($title) . "</h4>\n";		
+		echo "<h4><a href=\"?note=" . urlencode($title) . "\">" . titleify($title) . "</a></h4>\n";
 		echo "<div class=\"note-body\">";
 		echo MyMarkdown($GLOBALS['essays'][$title]);
 		echo "</div>\n\n";
@@ -433,13 +433,16 @@ EOT;
 <?
 
 
+	$home = false;
+
 	if ($tag = $GLOBALS['tag_route']) {
 		$tag_name = $tag;
  		if($GLOBALS['tag_to_name'][$tag])
  			$tag_name = $GLOBALS['tag_to_name'][$tag];
 
 		$title = ucwords(tag_name_sub($tag));
-		$home = false;
+	}  elseif ($note = $GLOBALS['note_route']) {
+		$title = titleify($note);
 	} else {
 		$home = true;
 		$title = "Philosophistry";
@@ -491,7 +494,9 @@ if ($GLOBALS['expand']) {
 
 <?php
 
-	if ($tag_route = $GLOBALS['tag_route']) {
+	if ($note_route = $GLOBALS['note_route']) {
+		print_essay(urldecode($note_route));
+	} else if ($tag_route = $GLOBALS['tag_route']) {
 		if ($tag_route == "_nystbd")
 			print_tagset();
  		else
