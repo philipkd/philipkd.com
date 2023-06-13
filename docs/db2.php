@@ -407,8 +407,14 @@ EOT;
     		if (preg_match('/^- /',$line,$matches)) {
     			array_push($tags,"_stbd");
     		}
+
+			$contents = $GLOBALS['essays'][$line];
+			if (preg_match('/---/',$contents))
+    			array_push($tags,"_idd");
+
     		return $tags;
     	}
+
     	return false;
 	}		
 
