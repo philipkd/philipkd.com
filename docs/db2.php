@@ -56,7 +56,7 @@
 	    	$should_bold = $GLOBALS['tag_to_new'][$tag] && $tag != "_new";
 	    	$bold_start = $should_bold ? "<b>" : "";
 	    	$bold_end = $should_bold ? "</b>" : "";
-		    echo "$bold_start<a href=\"/db2/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end";
+		    echo "$bold_start<a href=\"?tag=$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end";
 		    if (!$hide_total)
 		    	echo " <span class=\"count\">$count</span>";
 
@@ -336,7 +336,7 @@ EOT;
 	}
 
 	function print_essay($title, $excerpt = false) {
-		echo "<p><b><a href=\"?note=" . urlencode($title) . "\">" . titleify($title) . "</a></b>\n";		
+		echo "<p class='essay'><b class='title'><a href=\"?note=" . urlencode($title) . "\">" . titleify($title) . "</a></b>\n";		
 
 		if ($excerpt) {
 			if ($body = $GLOBALS['essays'][$title]) {
@@ -355,7 +355,7 @@ EOT;
 
 	    foreach ($tags as $tag) {
 	    	if (special_tag($tag) && $GLOBALS['local_access'] || !special_tag($tag) || $tag == "_new")
-		    	echo " <a href='/db2/$tag'>" . $tag . "</a>\n";
+		    	echo " <a href='?tag=$tag'>" . $tag . "</a>\n";
 		}
 		echo "</p>";		
 

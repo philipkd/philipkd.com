@@ -3,6 +3,16 @@ body {
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 
+p.essay b.title a {
+	text-decoration: none;
+	color: black;
+}
+
+p.essay b.title a:hover {
+	text-decoration: underline;
+	color: black;
+}
+
 .entry {
 	max-width: 600px;
 	margin: auto;
