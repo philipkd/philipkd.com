@@ -86,7 +86,7 @@
 		if ($GLOBALS['local_access']) {
 			echo "<b>Special Tags</b><p/>";
 		    print_nav_tags($special_tags,true);
-		    echo "<a href=\"/db2/_nystbd\">not-yet-initial-dev</a>";
+		    echo "<a href=\"?tag=_nystbd\">not-yet-initial-dev</a>";
 		    print "<p/>";
 		}		
 
@@ -336,7 +336,7 @@ EOT;
 	}
 
 	function print_essay($title, $excerpt = false) {
-		echo "<p class='essay'><b class='title'><a href=\"?note=" . urlencode($title) . "\">" . titleify($title) . "</a></b>\n";		
+		echo "<p class='essay'><b class='title'><a href=\"?note=" . urlencode($title) . "\">" . titleify($title,$excerpt) . "</a></b>\n";		
 
 		if ($excerpt) {
 			if ($body = $GLOBALS['essays'][$title]) {
@@ -373,7 +373,7 @@ EOT;
 		echo "<div class=\"note-tags\">";
 	    foreach ($tags as $tag) {
 	    	if (special_tag($tag) && $GLOBALS['local_access'] || !special_tag($tag) || $tag == "_new")
-		    	echo "<a href='/db2/$tag'>" . $tag . "</a>\n";
+		    	echo "<a href='?tag=$tag'>" . $tag . "</a>\n";
 		}
 		echo "</div>";
 
@@ -418,7 +418,7 @@ EOT;
 		return $text;
 	}
 
-	function titleify($text, $preserve_dash = true) {
+	function titleify($text, $preserve_dash = false) {
 		$text = preg_replace('/\.txt/','',$text);
 		$text = preg_replace('/^ _/','',$text);
 		if (!$preserve_dash)
@@ -479,7 +479,7 @@ EOT;
 
 </head>
 
-<div class="site-title"><a href="/db2/">Notes</a> by <a href='https://philipkd.com/'>Philip Dhingra</a></div>
+<div class="site-title"><a href="/db2.php">Notes</a> by <a href='https://philipkd.com/'>Philip Dhingra</a></div>
 
 <div class="entry">
 

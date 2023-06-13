@@ -6,9 +6,9 @@ ErrorDocument 404 /404.html
 
 RewriteEngine On
 
-RewriteRule ^db/([^.]*)$ /db.php?tag=$1 [L]
-RewriteRule ^db2/([^.]*)$ /db2.php?tag=$1 [L]
-RewriteRule ^db3/([^.]*)$ /db3.php?tag=$1 [L]
+# RewriteRule ^db/([^.]*)$ /db.php?tag=$1 [L]
+# RewriteRule ^db2/([^.]*)$ /db2.php?tag=$1 [L]
+# RewriteRule ^db3/([^.]*)$ /db3.php?tag=$1 [L]
 
 RewriteRule ^wiki/(.*)\.(png|jpg|gif|jpeg)$ /local-media/$1.$2 [L]
 RewriteRule ^wiki/(.*)$ /wiki.php?note=$1 [L]
