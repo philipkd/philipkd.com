@@ -218,7 +218,7 @@
 		// $i = 0;
  		foreach ($essays as $essay) {
 			if ($GLOBALS['local_access'] && !$GLOBALS['expand'])
-				print_title_and_tags($essay);
+				print_essay($essay,true);
 			else
 				print_essay($essay);
 
@@ -335,14 +335,22 @@ EOT;
 		return iterator_count($fi);
 	}
 
-	function print_title_and_tags($title) {
-		echo "<p><b>" . titleify($title) . "</b>";
-		if ($body = $GLOBALS['essays'][$title]) {
-			echo " — ";
-			echo substr($body,0,144);
+	function print_essay($title, $excerpt = false) {
+		echo "<p><b><a href=\"?note=" . urlencode($title) . "\">" . titleify($title) . "</a></b>\n";		
+
+		if ($excerpt) {
+			if ($body = $GLOBALS['essays'][$title]) {
+				echo " — ";
+				echo substr($body,0,144);
+			}
+		} else {
+			echo "<div class=\"note-body\">";
+			echo MyMarkdown($GLOBALS['essays'][$title]);
+			echo "</div>\n\n";
 		}
 
 		echo "<br/>";
+		
 		$tags = $GLOBALS['essay_to_tags'][$title];
 
 	    foreach ($tags as $tag) {
@@ -353,9 +361,9 @@ EOT;
 
 	}
 
-	function print_essay($title) {
+	function dep_print_essay($title) {
 
-		echo "<h4><a href=\"?note=" . urlencode($title) . "\">" . titleify($title) . "</a></h4>\n";
+		// echo "<h4>" . titleify($title) . "</h4>\n";
 		echo "<div class=\"note-body\">";
 		echo MyMarkdown($GLOBALS['essays'][$title]);
 		echo "</div>\n\n";
@@ -410,9 +418,12 @@ EOT;
 		return $text;
 	}
 
-	function titleify($text) {
+	function titleify($text, $preserve_dash = true) {
 		$text = preg_replace('/\.txt/','',$text);
 		$text = preg_replace('/^ _/','',$text);
+		if (!$preserve_dash)
+			$text = preg_replace('/^- /','',$text);
+
 		$text = remove_tags($text);
 		return $text;
 	}
@@ -434,6 +445,7 @@ EOT;
 
 
 	$home = false;
+	$show_title = true;
 
 	if ($tag = $GLOBALS['tag_route']) {
 		$tag_name = $tag;
@@ -442,7 +454,8 @@ EOT;
 
 		$title = ucwords(tag_name_sub($tag));
 	}  elseif ($note = $GLOBALS['note_route']) {
-		$title = titleify($note);
+		$title = titleify($note,false);
+		$show_title = false;
 	} else {
 		$home = true;
 		$title = "Philosophistry";
@@ -472,22 +485,24 @@ EOT;
 
 <? if (!$home) { ?>
 
-<div class="page-title"><?= $title ?> 
+<div class="page-title"><?= $show_title ? $title : '' ?> 
 
 <?
-$url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-$text = ' + ';
-if ($GLOBALS['expand']) {
-	$text = ' - ';
-	$url = preg_replace('/&expand=1/','',$url);
-} else {
-	$url .= '&expand=1';
-}?>
+// $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+// $text = ' + ';
+// if ($GLOBALS['expand']) {
+// 	$text = ' - ';
+// 	$url = preg_replace('/&expand=1/','',$url);
+// } else {
+// 	$url .= '&expand=1';
+// }
 
-<span class="expand-btn">
+?>
+
+<!-- <span class="expand-btn">
 	<a href="<?= $url ?>"><?= $text ?></a>
 </span>
-
+ -->
 </div>
 
 <? } ?>
@@ -501,9 +516,7 @@ if ($GLOBALS['expand']) {
 			print_tagset();
  		else
  			print_tag($GLOBALS['tag_route']);
-
  	} else {
-
 		print_nav();
 
  	}
