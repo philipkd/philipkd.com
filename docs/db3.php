@@ -6,7 +6,7 @@
 	require '../vendor/autoload.php';
 	use Michelf\Markdown;
 	
-	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/sketches";
+	$GLOBALS['content_dir'] = dirname(__FILE__) . "/../content/db3";
 
 	if (preg_match("/^local./", $_SERVER['HTTP_HOST']))
 		$GLOBALS['local_access'] = true;
@@ -14,13 +14,13 @@
 	if ($_GET['expand'])
 		$GLOBALS['expand'] = $_GET['expand'];
 
-
+	$GLOBALS['note_route'] = $_GET['note'];
     $GLOBALS['tag_route'] = $_GET['tag'];
 
     if ($argv[1])
     	$GLOBALS['tag_route'] = $argv[1];
 
-	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/filtered/";
+	$GLOBALS['files_dir'] = $GLOBALS['content_dir'] . "/files/";
 	$GLOBALS['logs_dir'] = $GLOBALS['content_dir'] . "/Logs";
 	$GLOBALS['tag_names_file'] = $GLOBALS['content_dir'] . "/tags.txt";
 
@@ -40,7 +40,7 @@
 
 	process_notes();
 	// process_logs();
-	// process_tag_names();
+	process_tag_names();
 
 	if ($argv[1] == 'list') {
 		$tags = array_keys($GLOBALS['tag_to_essays']);
@@ -56,7 +56,7 @@
 	    	$should_bold = $GLOBALS['tag_to_new'][$tag] && $tag != "_new";
 	    	$bold_start = $should_bold ? "<b>" : "";
 	    	$bold_end = $should_bold ? "</b>" : "";
-		    echo "$bold_start<a href=\"/db3/$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end";
+		    echo "$bold_start<a href=\"?tag=$tag\">" . strtolower(tag_name_sub($tag)) . "</a>$bold_end";
 		    if (!$hide_total)
 		    	echo " <span class=\"count\">$count</span>";
 
@@ -83,10 +83,10 @@
 	    		array_push($main_tags,$tag);
 	    }
 
-		if (false && $GLOBALS['local_access']) {
+		if ($GLOBALS['local_access']) {
 			echo "<b>Special Tags</b><p/>";
 		    print_nav_tags($special_tags,true);
-		    // echo "<a href=\"/db/_nystbd\">not-yet-initial-dev</a>";
+		    echo "<a href=\"?tag=_nystbd\">not-yet-initial-dev</a>";
 		    print "<p/>";
 		}		
 
@@ -218,7 +218,7 @@
 		// $i = 0;
  		foreach ($essays as $essay) {
 			if ($GLOBALS['local_access'] && !$GLOBALS['expand'])
-				print_title_and_tags($essay);
+				print_essay($essay,true);
 			else
 				print_essay($essay);
 
@@ -335,27 +335,35 @@ EOT;
 		return iterator_count($fi);
 	}
 
-	function print_title_and_tags($title) {
-		echo "<p><b>" . titleify($title) . "</b>";
-		if ($body = $GLOBALS['essays'][$title]) {
-			echo " — ";
-			echo substr($body,0,144);
+	function print_essay($title, $excerpt = false) {
+		echo "<p class='essay'><b class='title'><a href=\"?note=" . urlencode($title) . "\">" . titleify($title,$excerpt) . "</a></b>\n";		
+
+		if ($excerpt) {
+			if ($body = $GLOBALS['essays'][$title]) {
+				echo " — ";
+				echo substr($body,0,144);
+			}
+		} else {
+			echo "<div class=\"note-body\">";
+			echo MyMarkdown($GLOBALS['essays'][$title]);
+			echo "</div>\n\n";
 		}
 
 		echo "<br/>";
+		
 		$tags = $GLOBALS['essay_to_tags'][$title];
 
 	    foreach ($tags as $tag) {
 	    	if (special_tag($tag) && $GLOBALS['local_access'] || !special_tag($tag) || $tag == "_new")
-		    	echo " <a href='/db/$tag'>" . $tag . "</a>\n";
+		    	echo " <a href='?tag=$tag'>" . $tag . "</a>\n";
 		}
 		echo "</p>";		
 
 	}
 
-	function print_essay($title) {
+	function dep_print_essay($title) {
 
-		echo "<h4>" . titleify($title) . "</h4>\n";		
+		// echo "<h4>" . titleify($title) . "</h4>\n";
 		echo "<div class=\"note-body\">";
 		echo MyMarkdown($GLOBALS['essays'][$title]);
 		echo "</div>\n\n";
@@ -365,7 +373,7 @@ EOT;
 		echo "<div class=\"note-tags\">";
 	    foreach ($tags as $tag) {
 	    	if (special_tag($tag) && $GLOBALS['local_access'] || !special_tag($tag) || $tag == "_new")
-		    	echo "<a href='/db/$tag'>" . $tag . "</a>\n";
+		    	echo "<a href='?tag=$tag'>" . $tag . "</a>\n";
 		}
 		echo "</div>";
 
@@ -399,8 +407,14 @@ EOT;
     		if (preg_match('/^- /',$line,$matches)) {
     			array_push($tags,"_stbd");
     		}
+
+			$contents = $GLOBALS['essays'][$line];
+			if (preg_match('/---/',$contents))
+    			array_push($tags,"_idd");
+
     		return $tags;
     	}
+
     	return false;
 	}		
 
@@ -410,9 +424,12 @@ EOT;
 		return $text;
 	}
 
-	function titleify($text) {
+	function titleify($text, $preserve_dash = false) {
 		$text = preg_replace('/\.txt/','',$text);
 		$text = preg_replace('/^ _/','',$text);
+		if (!$preserve_dash)
+			$text = preg_replace('/^- /','',$text);
+
 		$text = remove_tags($text);
 		return $text;
 	}
@@ -433,13 +450,18 @@ EOT;
 <?
 
 
+	$home = false;
+	$show_title = true;
+
 	if ($tag = $GLOBALS['tag_route']) {
 		$tag_name = $tag;
  		if($GLOBALS['tag_to_name'][$tag])
  			$tag_name = $GLOBALS['tag_to_name'][$tag];
 
 		$title = ucwords(tag_name_sub($tag));
-		$home = false;
+	}  elseif ($note = $GLOBALS['note_route']) {
+		$title = titleify($note,false);
+		$show_title = false;
 	} else {
 		$home = true;
 		$title = "Philosophistry";
@@ -463,42 +485,44 @@ EOT;
 
 </head>
 
-<div class="site-title"><a href="/db/">Notes</a> by <a href='https://philipkd.com/'>Philip Dhingra</a></div>
+<div class="site-title"><a href="/db3.php">Notes</a> by <a href='https://philipkd.com/'>Philip Dhingra</a></div>
 
 <div class="entry">
 
 <? if (!$home) { ?>
 
-<div class="page-title"><?= $title ?> 
+<div class="page-title"><?= $show_title ? $title : '' ?> 
 
 <?
-$url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-$text = ' + ';
-if ($GLOBALS['expand']) {
-	$text = ' - ';
-	$url = preg_replace('/&expand=1/','',$url);
-} else {
-	$url .= '&expand=1';
-}?>
+// $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+// $text = ' + ';
+// if ($GLOBALS['expand']) {
+// 	$text = ' - ';
+// 	$url = preg_replace('/&expand=1/','',$url);
+// } else {
+// 	$url .= '&expand=1';
+// }
 
-<span class="expand-btn">
+?>
+
+<!-- <span class="expand-btn">
 	<a href="<?= $url ?>"><?= $text ?></a>
 </span>
-
+ -->
 </div>
 
 <? } ?>
 
 <?php
 
-	if ($tag_route = $GLOBALS['tag_route']) {
+	if ($note_route = $GLOBALS['note_route']) {
+		print_essay(urldecode($note_route));
+	} else if ($tag_route = $GLOBALS['tag_route']) {
 		if ($tag_route == "_nystbd")
 			print_tagset();
  		else
  			print_tag($GLOBALS['tag_route']);
-
  	} else {
-
 		print_nav();
 
  	}
