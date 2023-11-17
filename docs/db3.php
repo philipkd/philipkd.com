@@ -1,5 +1,12 @@
 <?php
-	ini_set('error_reporting',E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
+
+
+	# what I had before:
+	#ini_set('error_reporting',E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
+
+	# I have this now, since I'm not worrying about php warnigs in PHP8
+	error_reporting(E_ERROR | E_PARSE);
+
 # ini_set('error_reporting', E_ALL);
 # ini_set('display_errors', 1);
 

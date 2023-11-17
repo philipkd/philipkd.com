@@ -11,4 +11,4 @@ or if you already cloned a repot:
 
 Simply paste [these commands](https://getcomposer.org/download/)
 
-Then run `php composer.phar`
+Then run `php composer.phar install`

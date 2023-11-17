@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60b2bbdd51100cf5ddf69ec6cf3bfa6c",
+    "content-hash": "1985a00d5062586e1bb7f6a83c26508b",
     "packages": [
         {
             "name": "michelf/php-markdown",
-            "version": "1.9.0",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/michelf/php-markdown.git",
-                "reference": "c83178d49e372ca967d1a8c77ae4e051b3a3c75c"
+                "reference": "5024d623c1a057dcd2d076d25b7d270a1d0d55f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/c83178d49e372ca967d1a8c77ae4e051b3a3c75c",
-                "reference": "c83178d49e372ca967d1a8c77ae4e051b3a3c75c",
+                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/5024d623c1a057dcd2d076d25b7d270a1d0d55f3",
+                "reference": "5024d623c1a057dcd2d076d25b7d270a1d0d55f3",
                 "shasum": ""
             },
             "require": {
@@ -55,22 +55,22 @@
             ],
             "support": {
                 "issues": "https://github.com/michelf/php-markdown/issues",
-                "source": "https://github.com/michelf/php-markdown/tree/1.9.0"
+                "source": "https://github.com/michelf/php-markdown/tree/1.9.1"
             },
-            "time": "2019-12-02T02:32:27+00:00"
+            "time": "2021-11-24T02:52:38+00:00"
         },
         {
             "name": "scssphp/scssphp",
-            "version": "v1.5.2",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scssphp/scssphp.git",
-                "reference": "6fe16f169f55f5e793474fb210aac0a4481619e5"
+                "reference": "a6b20c170ddb95f116b3d148a466a7bed1e85c35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scssphp/scssphp/zipball/6fe16f169f55f5e793474fb210aac0a4481619e5",
-                "reference": "6fe16f169f55f5e793474fb210aac0a4481619e5",
+                "url": "https://api.github.com/repos/scssphp/scssphp/zipball/a6b20c170ddb95f116b3d148a466a7bed1e85c35",
+                "reference": "a6b20c170ddb95f116b3d148a466a7bed1e85c35",
                 "shasum": ""
             },
             "require": {
@@ -84,9 +84,10 @@
                 "sass/sass-spec": "*",
                 "squizlabs/php_codesniffer": "~3.5",
                 "symfony/phpunit-bridge": "^5.1",
+                "thoughtbot/bourbon": "^7.0",
                 "twbs/bootstrap": "~5.0",
-                "twbs/bootstrap4": "4.6.0",
-                "zurb/foundation": "~6.5"
+                "twbs/bootstrap4": "4.6.1",
+                "zurb/foundation": "~6.7.0"
             },
             "suggest": {
                 "ext-iconv": "Can be used as fallback when ext-mbstring is not available",
@@ -96,6 +97,12 @@
                 "bin/pscss"
             ],
             "type": "library",
+            "extra": {
+                "bamarni-bin": {
+                    "forward-command": false,
+                    "bin-links": false
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "ScssPhp\\ScssPhp\\": "src/"
@@ -128,9 +135,9 @@
             ],
             "support": {
                 "issues": "https://github.com/scssphp/scssphp/issues",
-                "source": "https://github.com/scssphp/scssphp/tree/v1.5.2"
+                "source": "https://github.com/scssphp/scssphp/tree/v1.12.0"
             },
-            "time": "2021-05-18T00:05:58+00:00"
+            "time": "2023-11-14T14:56:09+00:00"
         }
     ],
     "packages-dev": [],
